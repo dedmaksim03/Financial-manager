@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    container_name: financial_manager_database
+    environment:
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: financial_manager_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/financial_manager_database_backup.sql:/docker-entrypoint-initdb.d/financial_manager_database_backup.sql
+    
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: financial_manager_backend
+    ports:
+      - "3000:3000"  # Порт, на котором ваше приложение будет доступно
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: 12345
+      DB_DATABASE: financial_manager_database
+    depends_on:
+      - db
