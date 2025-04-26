@@ -1,0 +1,18 @@
+.button {
+    height: 2em;
+    width: 100%;
+    background-color:  var(--main-color);
+    border: none;
+    border-radius: 0.5em;
+    font-size: 100%;
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Плавный переход */
+}
+
+.button:hover {
+    background-color: var(--main-color-dark);
+    cursor: pointer;
+}
+  
+.button:active {
+    transform: scale(0.97); /* Уменьшение кнопки при нажатии */
+}

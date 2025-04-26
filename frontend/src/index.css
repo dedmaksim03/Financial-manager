@@ -1,0 +1,29 @@
+:root {
+  --global-font-family: 'Josefin Sans';
+  --main-color: rgba(222, 239, 255, 1);
+  --main-color-dark: rgb(203, 229, 253);
+}
+
+input {
+  font-family: var(--global-font-family);
+  font-size: var(--input-font-size);
+  margin: 0;
+  padding: 0;
+  border: none;
+
+}
+
+button {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--global-font-family)
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
