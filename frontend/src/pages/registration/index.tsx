@@ -4,14 +4,18 @@ import { Input } from '../../components/input'
 import styles from './index.module.css'
 import { Context } from '../..'
 import { useNavigate } from 'react-router-dom'
-import { RegistrationPage } from '../registration'
 
-export const LoginPage = ({onRegistrationClick}: {onRegistrationClick: ()=>void}) => {
+export const RegistrationPage = ({onLoginClick}: {onLoginClick: ()=>void}) => {
 
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [passwordRetry, setPasswordRetry] = useState<string>('');
 
     const { store } = useContext(Context)
+
+    const checkCorrectPassword = () => {
+        
+    }
 
     const _setUsername = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setUsername(event.target.value)
@@ -21,9 +25,13 @@ export const LoginPage = ({onRegistrationClick}: {onRegistrationClick: ()=>void}
         setPassword(event.target.value)
         // console.log(`Enter password: ${password}`)
     }
+    const _setPasswordRetry = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setPasswordRetry(event.target.value)
+        // console.log(`Enter password: ${password}`)
+    }
 
-    const onLoginClick = async (): Promise<void> => {
-        await store.login({username: username, password: password})
+    const onRegistrationClick = async (): Promise<void> => {
+        await store.registration({username: username, password: password})
         console.log('button click')
     }
 
@@ -32,8 +40,9 @@ export const LoginPage = ({onRegistrationClick}: {onRegistrationClick: ()=>void}
             <div className={styles.form_container}>
                 <Input type='text' placeholder='Логин' onChange={_setUsername}/>
                 <Input type='password' placeholder='Пароль' onChange={_setPassword}/>
-                <Button text='Вход' onClick={onLoginClick}/>
-                <p className={styles.registration} onClick={onRegistrationClick}>Регистрация</p>
+                <Input type='password' placeholder='Повторный пароль' onChange={_setPasswordRetry}/>
+                <Button text='Создать' onClick={onRegistrationClick}/>
+                <p className={styles.login} onClick={onLoginClick}>Уже есть аккаунт? Вход</p>
             </div>
         </div>
 

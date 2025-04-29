@@ -1,5 +1,27 @@
 .header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
     background-color: rgba(222, 239, 255, 1);
     /* padding: 30px; */
     height: 10vh;
+}
+
+.navbar {
+    display: grid;
+    margin-right: 3vw;
+    grid-template-columns: repeat(2, 1fr); /* 3 колонки равной ширины */
+    gap: 2vw;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.exit_button:hover {
+    cursor: pointer;
+}
+
+.exit_button:active {
+    transform: scale(0.95);
 }

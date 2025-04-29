@@ -59,17 +59,17 @@ export class AuthService {
         return new AuthResponseDto(jwtToken, refreshToken)
     }
 
-    async updateToken(refreshToken: string): Promise<{accessToken:String, refreshToken:String}> {
+    async updateToken(refreshToken: string): Promise<{accessToken:String, refreshToken:String, username:String}> {
         const foundUser = await this.userService.findUserByToken(refreshToken)
         if (!foundUser){
-            return {accessToken: "", refreshToken: ""}
+            return {accessToken: "", refreshToken: "", username: ""}
         }
 
         this.logger.log(`found user, token expires at ${foundUser.expires}`)
 
         if (foundUser.expires < new Date()) {
             this.logger.log(`found user's refresh token expired`)
-            return {accessToken: "", refreshToken: ""}
+            return {accessToken: "", refreshToken: "", username: ""}
         }
 
         const newRefreshToken = this.createRefreshToken()
@@ -78,10 +78,22 @@ export class AuthService {
         const resultUpdateToken = this.updateRefreshToken(foundUser, newRefreshToken)
         
         if (!resultUpdateToken){
-            return {accessToken: "", refreshToken: ""}
+            return {accessToken: "", refreshToken: "", username: ""}
         }
 
-        return {accessToken: newAccessToken, refreshToken: newRefreshToken}
+        return {accessToken: newAccessToken, refreshToken: newRefreshToken, username: foundUser.username}
+    }
+
+    async logout(refresh_token: string): Promise<UpdateResult | null> {
+        const userForLogout = await this.userService.findUserByToken(refresh_token)
+        if (!userForLogout) {
+            this.logger.error(`No refresh token ${refresh_token}`)
+            return null
+        }
+        const resultUpdateUser = await this.userService.logout(userForLogout.id)
+
+        return resultUpdateUser
+
     }
 
     private createRefreshToken(): string{

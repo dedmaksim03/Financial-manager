@@ -47,9 +47,12 @@ export class UsersService {
         return this.userRepository.update(userId, {refresh_token: refresh_token, expires: expiresDate})
     }
 
+    async logout(userId: number): Promise<UpdateResult> {
+        return this.userRepository.update(userId, {refresh_token: ''})
+    }
+
     private async hashPassword(password: string): Promise<string>{
         const salt = await bcrypt.genSalt()
         return await bcrypt.hash(password, salt)
     }
-
 }
