@@ -1,0 +1,13 @@
+.home_page {
+    display: flex;
+    height: 100%;
+}
+
+.navbar {
+    flex-grow: 1;
+    justify-items: end;;
+}
+
+.payload {
+    flex-grow: 120;
+}

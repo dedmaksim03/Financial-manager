@@ -1,7 +1,7 @@
 :root {
   --global-font-family: 'Josefin Sans';
   --main-color: rgba(222, 239, 255, 1);
-  --main-color-dark: rgb(203, 229, 253);
+  --main-color-dark: #cbe5fd;
 }
 
 input {

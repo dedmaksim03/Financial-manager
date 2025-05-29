@@ -1,0 +1,40 @@
+.navbar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #fff;
+    width: 60px;
+  }
+  
+  .navbarButton {
+    position: relative;
+    z-index: 1;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .navbarButton:hover,
+  .navbarButton:focus {
+    outline: none;
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+  
+  .navbarActiveBg {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    border-radius: 100%;
+    background-color: #b3cbf3;
+    transition: transform 0.3s ease, height 0.3s ease;
+    z-index: 0;
+  }
+  

@@ -1,17 +1,23 @@
 .header {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     background-color: rgba(222, 239, 255, 1);
-    /* padding: 30px; */
     height: 10vh;
+}
+
+.logo {
+    height: 3.5vw;
+    margin-left: 1vw;
+    
 }
 
 .navbar {
     display: grid;
-    margin-right: 3vw;
+    margin-right: 1vw;
     grid-template-columns: repeat(2, 1fr); /* 3 колонки равной ширины */
     gap: 2vw;
+    font-size: 1.4vw;
 }
 
 .username {
