@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { Category } from "src/categories/category.entity";
 import { User } from "src/users/user.entity";
 
 @Module({
@@ -15,13 +16,13 @@ import { User } from "src/users/user.entity";
                 username: configService.get<string>('DB_USERNAME'),// || 'postgres',
                 password: configService.get<string>('DB_PASSWORD'),// || '12345',
                 database: configService.get<string>('DB_DATABASE'),// || 'financial_manager_database',
-                entities: [User],
+                entities: [User, Category],
                 synchronize: false, // Включите только в разработке
             }),
             inject: [ConfigService]
 
         }),
-        TypeOrmModule.forFeature([User])
+        TypeOrmModule.forFeature([User, Category])
     ],
     exports: [TypeOrmModule]
 })
