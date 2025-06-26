@@ -30,5 +30,9 @@ export class CategoryService {
     
     async deleteCategory (id: number): Promise<DeleteResult> {
         return this.categoryRepository.delete(id)
-    }        
+    }     
+    
+    async getById (id: number): Promise<Category|null> {
+        return this.categoryRepository.findOne({where: {id: id}})
+    }
 }

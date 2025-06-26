@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: 12345
       POSTGRES_DB: financial_manager_database
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./db/financial_manager_database_backup.sql:/docker-entrypoint-initdb.d/financial_manager_database_backup.sql
     

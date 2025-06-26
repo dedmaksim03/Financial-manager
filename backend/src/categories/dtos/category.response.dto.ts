@@ -1,4 +1,4 @@
-export class CategoryDto {
+export class CategoryResponseDto {
     name: string
     color: string 
     sum: number

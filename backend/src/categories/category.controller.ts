@@ -1,7 +1,7 @@
 import { Controller, Logger, UseGuards, Request, Get, Post, Res, Body, BadRequestException, Delete } from "@nestjs/common";
 import { JwtAuthGuard } from "src/jwt/jwt.auth.guard";
 import { Response, Request as R } from 'express'
-import { CategoryDto } from "./dtos/category.response.dto";
+import { CategoryResponseDto } from "./dtos/category.response.dto";
 import { CategoryService } from "./category.service";
 import { CategoryRequestDto } from "./dtos/category.request.dto";
 
@@ -15,9 +15,9 @@ export class CategoriesController {
     ){}
 
     @Get('get')
-    async getAllCategoriesForUser (@Request() req): Promise<CategoryDto[]> {
+    async getAllCategoriesForUser (@Request() req): Promise<CategoryResponseDto[]> {
         let categories = await this.categoryService.getAllCategoriesByUser(req.user)
-        return categories.map((category) => new CategoryDto(category.name, category.color, 0))
+        return categories.map((category) => new CategoryResponseDto(category.name, category.color, 0))
     }
 
     @Post('create')
