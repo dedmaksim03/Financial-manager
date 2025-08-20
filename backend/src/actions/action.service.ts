@@ -1,7 +1,7 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { forwardRef, Inject, Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Action } from "./action.entity";
-import { DeleteResult, In, Repository } from "typeorm";
+import { Between, DeleteResult, In, Repository } from "typeorm";
 import { User } from "src/users/user.entity";
 import { ActionDto } from "./dtos/action.dto";
 import { CategoryService } from "src/categories/category.service";
@@ -11,6 +11,7 @@ export class ActionService {
     private readonly logger = new Logger(ActionService.name)
     constructor(
         @InjectRepository(Action) private actionRepository: Repository<Action>,
+        @Inject(forwardRef(() => CategoryService))
         private readonly categoryService: CategoryService
     ) {}
 
@@ -19,6 +20,20 @@ export class ActionService {
         let categoryIds = userCategories.map(cat => cat.id)
         let actions = this.actionRepository.find({
             where: {category: In(categoryIds)},
+            relations: ['category']
+        })
+        return actions
+    }
+
+    async getActionsByUser (user: User, dateFrom: Date, dateTo: Date): Promise<Action[]> {
+        let userCategories = await this.categoryService.getAllCategoriesByUser(user)
+        let categoryIds = userCategories.map(cat => cat.id)
+        this.logger.log(`${dateFrom}, ${dateTo}`)
+        let actions = this.actionRepository.find({
+            where: {
+                category: In(categoryIds),
+                date: Between(dateFrom, dateTo)
+            },
             relations: ['category']
         })
         return actions

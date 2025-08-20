@@ -4,6 +4,10 @@ import { Response, Request as R } from 'express'
 import { CategoryResponseDto } from "./dtos/category.response.dto";
 import { CategoryService } from "./category.service";
 import { CategoryRequestDto } from "./dtos/category.request.dto";
+import { CategoryDatefilterDto } from "./dtos/category.datefilter.dto";
+import { ActionService } from "src/actions/action.service";
+import { Action } from "src/actions/action.entity";
+import { Category } from "./category.entity";
 
 @Controller('api/categories')
 @UseGuards(JwtAuthGuard)
@@ -15,9 +19,19 @@ export class CategoriesController {
     ){}
 
     @Get('get')
-    async getAllCategoriesForUser (@Request() req): Promise<CategoryResponseDto[]> {
-        let categories = await this.categoryService.getAllCategoriesByUser(req.user)
-        return categories.map((category) => new CategoryResponseDto(category.name, category.color, 0))
+    async getAllCategoriesForUser (@Request() req, @Body() categoryDatefilterDto: CategoryDatefilterDto): Promise<CategoryResponseDto[]> {
+
+        let categories: CategoryResponseDto[] | Category[]
+
+        if (categoryDatefilterDto?.dateFrom && categoryDatefilterDto?.dateTo) {
+            categories = await this.categoryService.getCategoriesByUser(req.user, categoryDatefilterDto?.dateFrom, categoryDatefilterDto?.dateTo)
+            return categories
+        }
+        else {
+            categories = await this.categoryService.getAllCategoriesByUser(req.user)
+            return categories.map((category) => new CategoryResponseDto(category.name, category.color, 0))
+        }
+        
     }
 
     @Post('create')

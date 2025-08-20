@@ -13,7 +13,7 @@ SET standard_conforming_strings = on;
 -- Roles
 --
 
-CREATE ROLE postgres;
+-- CREATE ROLE postgres;
 ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS;
 
 --
@@ -94,7 +94,7 @@ SET row_security = off;
 -- Name: financial_manager_database; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE financial_manager_database WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
+-- CREATE DATABASE financial_manager_database WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
 
 
 ALTER DATABASE financial_manager_database OWNER TO postgres;
