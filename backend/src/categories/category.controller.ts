@@ -29,7 +29,7 @@ export class CategoriesController {
         }
         else {
             categories = await this.categoryService.getAllCategoriesByUser(req.user)
-            return categories.map((category) => new CategoryResponseDto(category.name, category.color, 0))
+            return categories.map((category) => new CategoryResponseDto(category.id, category.name, category.color, 0))
         }
         
     }

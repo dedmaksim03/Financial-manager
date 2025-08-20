@@ -41,7 +41,7 @@ export class CategoryService {
             }
         )
 
-        return categories.map((category) => new CategoryResponseDto(category.name, category.color, categoriesSum.get(category.id) || 0))
+        return categories.map((category) => new CategoryResponseDto(category.id, category.name, category.color, categoriesSum.get(category.id) || 0))
 
     }
 
