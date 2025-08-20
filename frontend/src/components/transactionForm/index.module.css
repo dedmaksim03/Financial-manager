@@ -1,0 +1,143 @@
+.transactionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.colorItem {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+  transition: transform 0.2s;
+}
+
+.colorItem:hover {
+  transform: scale(1.05);
+}
+
+.selected {
+  border-color: #000;
+}
+
+.checkmark {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fieldGroup {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.fieldGroup input[type='text'],
+.fieldGroup input[type='number'] {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 16px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.fieldGroup .react-datepicker-wrapper {
+  width: 100%;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.colorItem {
+  width: 110px; /* увеличить ширину, чтобы вместить текст */
+  height: 110px; /* увеличить высоту */
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+  color: #fff; /* для текста */
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+}
+
+.categoryInfo {
+  margin-top: 7px;
+  color: #000; /* можно выбрать цвет, читаемый на фоне */
+}
+
+.categoryName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.categoryAmount {
+  font-size: 12px;
+  color: #555;
+}
+
+.selected {
+  border-color: #000;
+}
+
+.checkmark {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+}
+

@@ -1,6 +1,6 @@
-.main_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+.overviewContainer {
+  display: flex;
+  justify-content: flex-start; /* сдвиг влево */
+  gap: 20px; /* расстояние между донатами */
+  padding-left: 50px;
 }

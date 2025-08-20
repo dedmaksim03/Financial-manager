@@ -10,6 +10,7 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '.';
 import { AuthPage } from './pages/auth';
 import { OverviewPage } from './pages/overview';
+import { OtherPage } from './pages/other';
 
 function App() {
 
@@ -50,7 +51,8 @@ function App() {
       <BodyPage>
         <MainPage>
         <Routes>
-            <Route path="/*" Component={OverviewPage}/>
+            <Route path="/overview" Component={OverviewPage}/>
+            <Route path="/*" Component={OtherPage}/>
           {/* <Route path="/login" Component={LoginPage}/>
           <Route path="/registration" Component={RegistrationPage}/> */}
         </Routes>  
