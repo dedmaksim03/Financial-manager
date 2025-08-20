@@ -15,25 +15,29 @@ export const OverviewPage: React.FC = () => {
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    ActionsService.getActions()
-      .then((data) => {
-        setActions(data.data);
-        setLoadingActions(false);
-      })
-      .catch(() => {
-        setError('Ошибка загрузки данных');
-        setLoadingActions(false);
-      });
-    CategoriesService.getCategories("2025-07-05", "2025-12-20")  // год-месяц-день
+    const getData = () => {
+        ActionsService.getActions()
         .then((data) => {
-            setCategories(data.data)
-            setLoadingCategories(false)
+            setActions(data.data);
+            setLoadingActions(false);
         })
         .catch(() => {
             setError('Ошибка загрузки данных');
-            setLoadingCategories(false);
-        })
+            setLoadingActions(false);
+        });
+        CategoriesService.getCategories("2025-07-05", "2025-12-20")  // год-месяц-день
+            .then((data) => {
+                setCategories(data.data)
+                setLoadingCategories(false)
+            })
+            .catch(() => {
+                setError('Ошибка загрузки данных');
+                setLoadingCategories(false);
+            })
+    }  
+
+  useEffect(() => {
+    getData()
   }, []);
 
   // Группируем данные по категориям и типу (доход/расход)
@@ -72,6 +76,17 @@ export const OverviewPage: React.FC = () => {
       <TransactionForm
         categories={categories}
         onSubmit={(data) => {
+            ActionsService.createAction(
+                data.type,
+                data.message,
+                data.sum,
+                data.date.toISOString(),
+                data.category_id
+            )
+            .then(() => {
+                getData()              
+            })
+            .catch(() => console.log("Ошибка при создании Action"))
             console.log('Transaction:', data);
         }}
         />

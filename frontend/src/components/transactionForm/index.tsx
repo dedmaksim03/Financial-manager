@@ -9,8 +9,8 @@ type TransactionType = 'Доход' | 'Расход';
 type Props = {
   categories: CategoryResponse[];
   onSubmit: (data: {
-    categoryId: number;
-    amount: number;
+    category_id: number;
+    sum: number;
     message: string;
     date: Date;
     type: TransactionType;
@@ -18,19 +18,19 @@ type Props = {
 };
 
 export const TransactionForm: React.FC<Props> = ({ categories, onSubmit }) => {
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+  const [selectedcategory_id, setSelectedcategory_id] = useState<number | null>(null);
   const [message, setMessage] = useState('');
-  const [amount, setAmount] = useState<number>(0);
+  const [sum, setsum] = useState<number>(0);
   const [date, setDate] = useState<Date>(new Date());
   const [type, setType] = useState<TransactionType>('Расход');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedCategoryId) return;
+    if (!selectedcategory_id) return;
 
     onSubmit({
-      categoryId: selectedCategoryId,
-      amount,
+      category_id: selectedcategory_id,
+      sum,
       message,
       date,
       type,
@@ -41,20 +41,19 @@ export const TransactionForm: React.FC<Props> = ({ categories, onSubmit }) => {
     <form onSubmit={handleSubmit} className={styles.transactionForm}>
       <div className={styles.palette}>
         {categories.map((category) => {
-            console.log(category.sum, category.id)
-          const amount = category.sum || 0;
+          const sum = category.sum || 0;
           return (
             <div
               key={category.id}
-              className={`${styles.colorItem} ${selectedCategoryId === category.id ? styles.selected : ''}`}
+              className={`${styles.colorItem} ${selectedcategory_id === category.id ? styles.selected : ''}`}
               style={{ backgroundColor: category.color }}
-              onClick={() => setSelectedCategoryId(category.id)}
+              onClick={() => setSelectedcategory_id(category.id)}
               title={category.name}
             >
-              {selectedCategoryId === category.id && <span className={styles.checkmark}>✓</span>}
+              {selectedcategory_id === category.id && <span className={styles.checkmark}>✓</span>}
               <div className={styles.categoryInfo}>
                 <div className={styles.categoryName}>{category.name}</div>
-                <div className={styles.categoryAmount}>{amount.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}</div>
+                <div className={styles.categorysum}>{sum.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}</div>
               </div>
             </div>
           );
@@ -75,8 +74,8 @@ export const TransactionForm: React.FC<Props> = ({ categories, onSubmit }) => {
       <input
         type="number"
         placeholder="Сумма"
-        value={amount}
-        onChange={(e) => setAmount(parseFloat(e.target.value))}
+        value={sum}
+        onChange={(e) => setsum(parseFloat(e.target.value))}
         min={0}
         step={0.01}
       />
@@ -116,7 +115,7 @@ export const TransactionForm: React.FC<Props> = ({ categories, onSubmit }) => {
       </div>
     </div>
 
-    <button type="submit" disabled={!selectedCategoryId}>Сохранить</button>
+    <button type="submit" disabled={!selectedcategory_id}>Сохранить</button>
   </div>
 </form>
   );
