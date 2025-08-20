@@ -1,4 +1,4 @@
-import { Controller, Logger, UseGuards, Request, Get, Post, Res, Body, BadRequestException, Delete } from "@nestjs/common";
+import { Controller, Logger, UseGuards, Request, Get, Post, Res, Body, BadRequestException, Delete, Query } from "@nestjs/common";
 import { JwtAuthGuard } from "src/jwt/jwt.auth.guard";
 import { Response, Request as R } from 'express'
 import { CategoryResponseDto } from "./dtos/category.response.dto";
@@ -19,7 +19,7 @@ export class CategoriesController {
     ){}
 
     @Get('get')
-    async getAllCategoriesForUser (@Request() req, @Body() categoryDatefilterDto: CategoryDatefilterDto): Promise<CategoryResponseDto[]> {
+    async getAllCategoriesForUser (@Request() req, @Query() categoryDatefilterDto: CategoryDatefilterDto): Promise<CategoryResponseDto[]> {
 
         let categories: CategoryResponseDto[] | Category[]
 
