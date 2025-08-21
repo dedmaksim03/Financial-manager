@@ -38,6 +38,8 @@ export class ActionsController {
             this.logger.log('Error while creating action')
             return new BadRequestException()
         }
+
+        this.logger.log(`saveResult: ${saveResult.date}`)
         return 
     }
 

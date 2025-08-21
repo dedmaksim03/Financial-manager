@@ -1,73 +1,18 @@
-.container {
-  /* max-height: 400px; */
-  height: 90%;
+.pageWrapper {
+  display: flex;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+.leftPane {
+  flex: 0.6;
   overflow-y: auto;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-left: 5%;
-  width: 40%;
-  font-family: Arial, sans-serif;
+  height: 90%;
 }
 
-.dateGroup {
-  margin-bottom: 20px;
-}
-
-.dateHeader {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
-}
-
-.operationRow {
-  display: flex;
-  align-items: center;
-  padding: 1vh 0;
-  border-bottom: 1px solid #eee;
-  cursor: pointer; /* Показываем, что можно кликнуть */
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.operationRow:hover {
-  background-color: #f0f8ff; /* светлый голубой фон при наведении */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.categoryIcon {
-  width: 2.3vw;
-  height: 2.3vw;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  margin-right: 10px;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.categoryName {
-  font-weight: bold;
-  font-size: 22px;
-  margin-bottom: 0.3vh;
-}
-
-.message {
-  font-size: 18px;
-  color: #666;
-}
-
-.amount {
-  font-weight: bold;
-  min-width: 80px;
-  font-size: 1.2vw;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.amount.negative {
-  color: red;
-}
-
-.amount.positive {
-  color: green;
+.rightPane {
+  flex: 0.4;
+  overflow-y: auto;
 }

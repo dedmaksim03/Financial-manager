@@ -3,7 +3,7 @@ export class ActionDto {
     type: string
     message: string 
     sum: number
-    date: Date
+    date: string
     category_id: number
     category_name?: string 
     category_color?: string
@@ -12,7 +12,7 @@ export class ActionDto {
         type: string, 
         message: string,
         sum: number,
-        date: Date,
+        date: string,
         category_id: number,
         id?: number,
         category_name?: string,

@@ -16,8 +16,8 @@ export class Action {
     @Column()
     sum: number
 
-    @Column()
-    date: Date    
+    @Column({ type: 'date' })
+    date: string   
 
     @ManyToOne(() => Category, (Category) => Category.actions)
     @JoinColumn({ name: 'category_id' })

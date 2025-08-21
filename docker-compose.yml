@@ -6,6 +6,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 12345
       POSTGRES_DB: financial_manager_database
+      TZ: Europe/Moscow
     ports:
       - "5433:5432"
     volumes:
@@ -24,5 +25,6 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: 12345
       DB_DATABASE: financial_manager_database
+      TZ: Europe/Moscow
     depends_on:
       - db

@@ -141,3 +141,25 @@ button:disabled {
   font-weight: bold;
 }
 
+.editingBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff8dc;
+  border: 1px solid #f0ad4e;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #8a6d3b;
+}
+
+.cancelButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #8a6d3b;
+  cursor: pointer;
+}
+
+

@@ -32,7 +32,7 @@ export class ActionService {
         let actions = this.actionRepository.find({
             where: {
                 category: In(categoryIds),
-                date: Between(dateFrom, dateTo)
+                date: Between(dateFrom.toString(), dateTo.toString())
             },
             relations: ['category']
         })
@@ -42,6 +42,8 @@ export class ActionService {
     async createAction (actionDto: ActionDto): Promise<Action | null> {
 
         let category = await this.categoryService.getById(actionDto.category_id)
+
+        this.logger.log(`actionDto: ${actionDto.date}`)
 
         if (!category) {
             return null
@@ -54,6 +56,8 @@ export class ActionService {
             date: actionDto.date,
             category: category
         });
+
+        this.logger.log(`newAction: ${newAction.date}`)
 
         return this.actionRepository.save(newAction)
     }    

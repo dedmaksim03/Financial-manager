@@ -117,6 +117,8 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
+SET timezone TO 'Europe/Moscow';
+
 --
 -- TOC entry 217 (class 1259 OID 16385)
 -- Name: actions; Type: TABLE; Schema: public; Owner: postgres
