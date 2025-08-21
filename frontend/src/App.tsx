@@ -11,6 +11,7 @@ import { Context } from '.';
 import { AuthPage } from './pages/auth';
 import { OverviewPage } from './pages/overview';
 import { OtherPage } from './pages/other';
+import OperationListPage from './pages/list';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
         <MainPage>
         <Routes>
             <Route path="/overview" Component={OverviewPage}/>
+            <Route path="/list" Component={OperationListPage}/>
             <Route path="/*" Component={OtherPage}/>
           {/* <Route path="/login" Component={LoginPage}/>
           <Route path="/registration" Component={RegistrationPage}/> */}

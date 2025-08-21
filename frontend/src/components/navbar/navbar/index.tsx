@@ -12,7 +12,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { id: "overview", svg: <ElementOne width="2vw" height="2vw" />, path: '/overview' },
-  { id: "two", svg: <ElementTwo width="2vw" height="2vw" />, path: '/two' },
+  { id: "list", svg: <ElementTwo width="2vw" height="2vw" />, path: '/list' },
   { id: "three", svg: <ElementOne width="2vw" height="2vw" />, path: '/three' },
   { id: "four", svg: <ElementTwo width="2vw" height="2vw" /> , path: '/four'},
 ];
