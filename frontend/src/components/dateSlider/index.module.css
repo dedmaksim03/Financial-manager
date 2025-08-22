@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  margin-top: 1vh;
+  width: 6vw;
+  background-color: #f0f4ff; /* светло-синий фон */
+  border: 1px solid #b3c7f9;
+  border-radius: 8px;
+}
+
+.arrow {
+  padding: 10px 12px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #1a73e8; /* синий текст */
+  border: 1px solid #1a73e8;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.arrow:hover {
+  background-color: #e8f0fe;
+}
+
+.centerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.dateText {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a237e; /* тёмно-синий текст */
+}
+
+.modeButton {
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #e3f2fd; /* светло-синий фон */
+  color: #1565c0;
+  border: 1px solid #64b5f6;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.modeButton:hover {
+  background-color: #bbdefb;
+}

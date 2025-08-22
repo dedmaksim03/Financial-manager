@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css'
-import Store from './store';
+import AuthStore from './store/AuthStore';
 
 interface State {
-  store: Store
+  store: AuthStore
 }
 
-const store = new Store()
+const store = new AuthStore()
 
 export const Context = createContext<State>({
   store, 

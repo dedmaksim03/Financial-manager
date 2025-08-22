@@ -5,7 +5,7 @@ import { AuthResponse } from '../models/response/AuthResponse';
 import { API_URL } from '../http';
 import { UserRequest } from '../models/request/UserRequest';
 
-export default class Store {
+export default class AuthStore {
   isAuth = false;
   isLoading = true;
   username = '';
