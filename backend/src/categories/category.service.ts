@@ -41,15 +41,16 @@ export class CategoryService {
             }
         )
 
-        return categories.map((category) => new CategoryResponseDto(category.id, category.name, category.color, categoriesSum.get(category.id) || 0))
+        return categories.map((category) => new CategoryResponseDto(category.id, category.name, category.color, categoriesSum.get(category.id) || 0, category.type))
 
     }
 
-    async createCategory (categoryName: string, categoryColor: string, user: User): Promise<Category> {
+    async createCategory (categoryName: string, categoryColor: string, type: string, user: User): Promise<Category> {
 
         const newCategory = this.categoryRepository.create({
             name: categoryName,
             color: categoryColor,
+            type: type,            
             user: user
         });
 

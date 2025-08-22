@@ -126,7 +126,6 @@ SET timezone TO 'Europe/Moscow';
 
 CREATE TABLE public.actions (
     id bigint NOT NULL,
-    name character varying NOT NULL,
     message character varying,
     sum integer NOT NULL,
     date date NOT NULL,
@@ -169,6 +168,7 @@ CREATE TABLE public.categories (
     id bigint NOT NULL,
     name character varying NOT NULL,
     color character varying NOT NULL,
+    type character varying NOT NULL,
     user_id bigint NOT NULL
 );
 
@@ -269,7 +269,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: actions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.actions (id, name, message, sum, date, category_id) FROM stdin;
+COPY public.actions (id, message, sum, date, category_id) FROM stdin;
 \.
 
 

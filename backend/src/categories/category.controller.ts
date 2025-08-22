@@ -29,7 +29,7 @@ export class CategoriesController {
         }
         else {
             categories = await this.categoryService.getAllCategoriesByUser(req.user)
-            return categories.map((category) => new CategoryResponseDto(category.id, category.name, category.color, 0))
+            return categories.map((category) => new CategoryResponseDto(category.id, category.name, category.color, 0, category.type))
         }
         
     }
@@ -37,7 +37,7 @@ export class CategoriesController {
     @Post('create')
     async createCategory (@Request() req, @Body() categoryRequestDto: CategoryRequestDto) {
         let saveResult = await this.categoryService.createCategory(
-            categoryRequestDto.name, categoryRequestDto.color, req.user
+            categoryRequestDto.name, categoryRequestDto.color, categoryRequestDto.type, req.user
         )
 
         if (!saveResult) {

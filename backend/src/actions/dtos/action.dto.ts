@@ -1,6 +1,5 @@
 export class ActionDto {
     id?: number
-    type: string
     message: string 
     sum: number
     date: string
@@ -9,7 +8,6 @@ export class ActionDto {
     category_color?: string
 
     constructor(
-        type: string, 
         message: string,
         sum: number,
         date: string,
@@ -20,7 +18,6 @@ export class ActionDto {
     )
     {
         this.id = id
-        this.type = type
         this.message = message 
         this.sum = sum
         this.date = date

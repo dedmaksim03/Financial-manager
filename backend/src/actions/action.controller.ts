@@ -18,7 +18,6 @@ export class ActionsController {
         let actions = await this.actionService.getAllActionsByUser(req.user)
         this.logger.log(actions)
         return actions.map((action) => new ActionDto(
-                action.type, 
                 action.message, 
                 action.sum,
                 action.date,

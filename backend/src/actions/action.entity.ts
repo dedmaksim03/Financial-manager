@@ -5,10 +5,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 @Entity('actions')
 export class Action {
     @PrimaryGeneratedColumn()
-    id: number
-
-    @Column()
-    type: string 
+    id: number 
 
     @Column()
     message: string

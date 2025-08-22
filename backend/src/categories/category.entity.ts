@@ -13,6 +13,9 @@ export class Category {
     @Column()
     color: string
 
+    @Column({ nullable: true })
+    type: string
+
     @ManyToOne(() => User, (User) => User.categories)
     @JoinColumn({ name: 'user_id' })
     user: User

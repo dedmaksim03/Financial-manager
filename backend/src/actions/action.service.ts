@@ -50,7 +50,6 @@ export class ActionService {
         }
 
         const newAction = this.actionRepository.create({
-            type: actionDto.type,
             message: actionDto.message,
             sum: actionDto.sum,
             date: actionDto.date,
