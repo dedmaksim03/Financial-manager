@@ -6,64 +6,57 @@ import { TransactionForm } from '../../components/transactionForm';
 import { CategoryResponse } from '../../models/response/CategoryResponse';
 import CategoriesService from '../../services/CategoriesService';
 import { ActionResponse } from '../../models/response/ActionResponse';
+import { observer } from "mobx-react-lite";
+import dateStore, { DateMode } from '../../store/DateStore'
 
 
-export const OverviewPage: React.FC = () => {
-  const [actions, setActions] = useState<ActionResponse[]>([]);
-  const [loadingActions, setLoadingActions] = useState(true);
+export const OverviewPage: React.FC = observer(() => {
+  const { selectedDate, mode } = dateStore;
+
   const [categories, setCategories] = useState<CategoryResponse[]>([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-    const getData = () => {
-        ActionsService.getActions()
+  const getData = () => {
+    let dateFrom: string
+    let dateTo: string
+
+    switch (mode){
+      case ("all"):
+        dateFrom = "2000-01-01"
+        dateTo = new Date().toISOString()
+        break
+      case ("year"):
+        dateFrom = new Date(selectedDate.get('year'), 0, 1).toISOString()
+        dateTo = new Date(selectedDate.get('year')+1, 0, 0).toISOString()
+        break        
+      case ("month"):
+        dateFrom = new Date(selectedDate.get('year'), selectedDate.get('month'), 1).toISOString()
+        dateTo = new Date(selectedDate.get('year'), selectedDate.get('month')+1, 0).toISOString()
+        break        
+    }
+
+    CategoriesService.getCategories(dateFrom, dateTo)
         .then((data) => {
-            setActions(data.data);
-            setLoadingActions(false);
+            setCategories(data.data)
+            setLoadingCategories(false)
         })
         .catch(() => {
             setError('Ошибка загрузки данных');
-            setLoadingActions(false);
-        });
-        CategoriesService.getCategories("2025-07-05", "2025-12-20")  // год-месяц-день
-            .then((data) => {
-                setCategories(data.data)
-                setLoadingCategories(false)
-            })
-            .catch(() => {
-                setError('Ошибка загрузки данных');
-                setLoadingCategories(false);
-            })
-    }  
+            setLoadingCategories(false);
+        })
+  }  
 
   useEffect(() => {
     getData()
-  }, []);
+  }, [selectedDate, mode]);
 
   // Группируем данные по категориям и типу (доход/расход)
   const aggregateByCategory = (type: string) => {
-    const filtered = actions.filter((a) => a.type === type);
-    const map = new Map<string, { value: number; color: string }>();
-
-    filtered.forEach(({ category_name, sum, category_color }) => {
-      const name = category_name || 'Без категории';
-      const color = category_color || '#8884d8'; // дефолтный цвет
-
-      if (map.has(name)) {
-        map.get(name)!.value += sum;
-      } else {
-        map.set(name, { value: sum, color });
-      }
-    });
-
-    return Array.from(map.entries()).map(([name, { value, color }]) => ({
-      name,
-      value,
-      color,
-    }));
+    return categories.filter((c) => {return c.type == type})
   };
 
-  if (loadingActions || loadingCategories) return <div>Загрузка...</div>;
+  if (loadingCategories) return <div>Загрузка...</div>;
   if (error) return <div>{error}</div>;
 
   const expensesData = aggregateByCategory('Расход');
@@ -92,4 +85,4 @@ export const OverviewPage: React.FC = () => {
         />
     </div>
   );
-};
+});

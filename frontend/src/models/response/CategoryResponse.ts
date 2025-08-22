@@ -3,4 +3,5 @@ export interface CategoryResponse {
     name: string
     color: string 
     sum: number
+    type: string
 }

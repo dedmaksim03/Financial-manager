@@ -6,7 +6,7 @@
   padding: 10px;
   margin-top: 1vh;
   width: 6vw;
-  background-color: #f0f4ff; /* светло-синий фон */
+  background-color: #f0f4ff; 
   border: 1px solid #b3c7f9;
   border-radius: 8px;
 }
@@ -16,7 +16,7 @@
   font-size: 20px;
   cursor: pointer;
   background-color: #ffffff;
-  color: #1a73e8; /* синий текст */
+  color: #1a73e8; 
   border: 1px solid #1a73e8;
   border-radius: 4px;
   transition: background-color 0.2s;
@@ -37,14 +37,14 @@
 .dateText {
   font-size: 18px;
   font-weight: bold;
-  color: #1a237e; /* тёмно-синий текст */
+  color: #1a237e;
 }
 
 .modeButton {
   padding: 6px 10px;
   font-size: 14px;
   cursor: pointer;
-  background-color: #e3f2fd; /* светло-синий фон */
+  background-color: #e3f2fd; 
   color: #1565c0;
   border: 1px solid #64b5f6;
   border-radius: 4px;

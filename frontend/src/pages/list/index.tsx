@@ -7,13 +7,8 @@ import OperationList from "../../components/operationList";
 import { CategoryResponse } from "../../models/response/CategoryResponse";
 import { TransactionForm } from "../../components/transactionForm";
 import CategoriesService from "../../services/CategoriesService";
-
-// Мокаем категории (можно заменить на реальные данные)
-const mockCategories: CategoryResponse[] = [
-  { id: 1, name: "Еда", color: "#FF6347", sum: -500 },
-  { id: 2, name: "Зарплата", color: "#4CAF50", sum: 50000 },
-  { id: 3, name: "Транспорт", color: "#1E90FF", sum: -1200 },
-];
+import { observer } from "mobx-react-lite";
+import dateStore from "../../store/DateStore";
 
 function groupByDate(ops: ActionResponse[]) {
   return ops.reduce<Record<string, ActionResponse[]>>((acc, op) => {
@@ -24,7 +19,9 @@ function groupByDate(ops: ActionResponse[]) {
   }, {});
 }
 
-const OperationListPage: React.FC = () => {
+const OperationListPage: React.FC = observer(() => {
+  const { selectedDate, mode } = dateStore;
+  
   const [actions, setActions] = useState<ActionResponse[]>([]);
   const [loadingActions, setLoadingActions] = useState(true);
   const [categories, setCategories] = useState<CategoryResponse[]>([]);
@@ -33,29 +30,47 @@ const OperationListPage: React.FC = () => {
   const [editingOperation, setEditingOperation] = useState<ActionResponse | null>(null);
 
     const getData = () => {
-        ActionsService.getActions()
-        .then((data) => {
-            setActions(data.data);
-            setLoadingActions(false);
-        })
-        .catch(() => {
-            setError('Ошибка загрузки данных');
-            setLoadingActions(false);
-        });
-        CategoriesService.getCategories("2025-07-05", "2025-12-20")  // год-месяц-день
-            .then((data) => {
-                setCategories(data.data)
-                setLoadingCategories(false)
-            })
-            .catch(() => {
-                setError('Ошибка загрузки данных');
-                setLoadingCategories(false);
-            })
+      let dateFrom: string
+      let dateTo: string
+
+      switch (mode){
+        case ("all"):
+          dateFrom = "2000-01-01"
+          dateTo = new Date().toISOString()
+          break
+        case ("year"):
+          dateFrom = new Date(selectedDate.get('year'), 0, 1).toISOString()
+          dateTo = new Date(selectedDate.get('year')+1, 0, 0).toISOString()
+          break        
+        case ("month"):
+          dateFrom = new Date(selectedDate.get('year'), selectedDate.get('month'), 1).toISOString()
+          dateTo = new Date(selectedDate.get('year'), selectedDate.get('month')+1, 0).toISOString()
+          break        
+      }
+
+      ActionsService.getActions()
+      .then((data) => {
+          setActions(data.data);
+          setLoadingActions(false);
+      })
+      .catch(() => {
+          setError('Ошибка загрузки данных');
+          setLoadingActions(false);
+      });
+      CategoriesService.getCategories(dateFrom, dateTo)
+          .then((data) => {
+              setCategories(data.data)
+              setLoadingCategories(false)
+          })
+          .catch(() => {
+              setError('Ошибка загрузки данных');
+              setLoadingCategories(false);
+          })
     }    
 
   useEffect(() => {
     getData()
-  }, []);
+  }, [selectedDate, mode]);
 
   const grouped = groupByDate(actions);
   const sortedDates = Object.keys(grouped).sort((a, b) => (a < b ? 1 : -1));
@@ -120,6 +135,6 @@ const OperationListPage: React.FC = () => {
         </div>
     </div>
 );
-};
+});
 
 export default OperationListPage;

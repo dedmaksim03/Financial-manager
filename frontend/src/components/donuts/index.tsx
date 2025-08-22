@@ -1,26 +1,22 @@
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 import styles from './index.module.css';
-
-type CategoryData = {
-  name: string;
-  value: number;
-  color: string;
-};
+import { CategoryResponse } from '../../models/response/CategoryResponse';
 
 type Props = {
-  data: CategoryData[];
+  data: CategoryResponse[];
   title: string;
 };
 
 export const DonutChart: React.FC<Props> = ({ data, title }) => {
-  const total = data.reduce((acc, cur) => acc + cur.value, 0);
+
+  const total = data.reduce((acc, cur) => acc + cur.sum, 0);
 
   return (
     <div className={styles.donutChartWrapper}>
       <h3>{title}</h3>
       <PieChart width={350} height={350}>
         <Pie
-          data={data}
+          data={data.map(d => {return {name: d.name, color: d.color, value: d.sum}})}
           dataKey="value"
           nameKey="name"
           cx="50%"
@@ -50,7 +46,7 @@ export const DonutChart: React.FC<Props> = ({ data, title }) => {
           dominantBaseline="middle"
           style={{ fontSize: '28px', fontWeight: 'bold'}}
         >
-          {total.toLocaleString()} ₽
+          {total?.toLocaleString()} ₽
         </text>
       </PieChart>
       <Legend />
