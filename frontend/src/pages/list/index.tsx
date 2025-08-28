@@ -39,12 +39,12 @@ const OperationListPage: React.FC = observer(() => {
           dateTo = new Date().toISOString()
           break
         case ("year"):
-          dateFrom = new Date(selectedDate.get('year'), 0, 1).toISOString()
-          dateTo = new Date(selectedDate.get('year')+1, 0, 0).toISOString()
+          dateFrom = new Date(selectedDate.get('year'), 0, 2).toISOString()
+          dateTo = new Date(selectedDate.get('year')+1, 0, 1).toISOString()
           break        
         case ("month"):
-          dateFrom = new Date(selectedDate.get('year'), selectedDate.get('month'), 1).toISOString()
-          dateTo = new Date(selectedDate.get('year'), selectedDate.get('month')+1, 0).toISOString()
+          dateFrom = new Date(selectedDate.get('year'), selectedDate.get('month'), 2).toISOString()
+          dateTo = new Date(selectedDate.get('year'), selectedDate.get('month')+1, 1).toISOString()
           break        
       }
 
@@ -80,13 +80,14 @@ const OperationListPage: React.FC = observer(() => {
     setEditingOperation(operation);
   };
 
-  const handleFormSubmit = (data: {
-    category_id: number;
-    sum: number;
-    message: string;
-    date: Date;
-    type: "Доход" | "Расход";
-  }) => {
+  const handleFormSubmit = async (data: {
+      category_id: number;
+      sum: number;
+      message: string;
+      date: Date;
+      type: "Доход" | "Расход";
+    }) => 
+    {
     if (editingOperation) {
       console.log("Измененная операция:", {
         ...editingOperation,
@@ -113,6 +114,10 @@ const OperationListPage: React.FC = observer(() => {
     setEditingOperation(null);
   };
 
+  const handleDeleteAction = (action_id: number) => {
+    ActionsService.deleteAction(action_id).then(() => getData()).then(() => setEditingOperation(null))
+  }
+
   if (loadingActions) return <div>Загрузка...</div>;
   if (error) return <div>{error}</div>;
 
@@ -129,6 +134,7 @@ const OperationListPage: React.FC = observer(() => {
         <TransactionForm
             categories={categories}
             onSubmit={ handleFormSubmit}
+            onDelete={handleDeleteAction}
             editingOperation={editingOperation}
             onCancelEdit={handleCancelEdit}
         />

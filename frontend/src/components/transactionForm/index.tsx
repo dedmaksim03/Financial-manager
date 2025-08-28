@@ -16,7 +16,8 @@ type Props = {
     message: string;
     date: Date;
     type: TransactionType;
-  }) => void;
+  }) => Promise<void>;
+  onDelete: (action_id: number) => void;
   editingOperation?: ActionResponse | null;
   onCancelEdit?: () => void;
 };
@@ -24,6 +25,7 @@ type Props = {
 export const TransactionForm: React.FC<Props> = ({
   categories,
   onSubmit,
+  onDelete,
   editingOperation,
   onCancelEdit
 }) => {
@@ -34,7 +36,6 @@ export const TransactionForm: React.FC<Props> = ({
   const [type, setType] = useState<TransactionType>('Расход');
   const [filteredCategories, setfilteredCategories] = useState<CategoryResponse[]>(categories.filter((c) => {return c.type == type}));
 
-  // При изменении editingOperation заполняем форму
   useEffect(() => {   
     if (editingOperation) {     
       setSelectedCategoryId(editingOperation.category_id);
@@ -73,7 +74,14 @@ export const TransactionForm: React.FC<Props> = ({
       message,
       date,
       type,
-    });
+    }).then(() => {
+      setSelectedCategoryId(null);
+      setMessage('');
+      setSum(0);
+      setDate(new Date());
+      setType('Расход');
+    })
+       
   };
 
   return (
@@ -149,9 +157,14 @@ export const TransactionForm: React.FC<Props> = ({
           </div>
         </div>
 
-        <button type="submit" disabled={!selectedCategoryId}>
+        <button type="submit" disabled={!selectedCategoryId && !editingOperation}>
           {editingOperation ? 'Сохранить изменения' : 'Создать'}
         </button>
+        {editingOperation && (
+          <button className={styles.buttonDelete} onClick={() => onDelete(editingOperation.id)}>
+            Удалить
+          </button>
+        )}
       </div>
     </form>
   );

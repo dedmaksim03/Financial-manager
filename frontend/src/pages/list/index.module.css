@@ -13,5 +13,5 @@
 
 .rightPane {
   flex: 0.4;
-  /* overflow-y: auto; */
+  overflow-y: auto;
 }

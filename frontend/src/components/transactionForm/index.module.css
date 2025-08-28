@@ -56,6 +56,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.buttonDelete {
+  background-color: #d1130d;
+}
+
 .editingBanner {
   display: flex;
   justify-content: space-between;

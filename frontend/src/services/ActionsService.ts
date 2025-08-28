@@ -12,6 +12,7 @@ export default class ActionsService {
       }
     });
   }
+
   static async createAction(type: string, message: string, sum: number, date: string, category_id: number): Promise<void> {
     return $api.post('/actions/create', {
         "type": type,
@@ -21,7 +22,8 @@ export default class ActionsService {
         "category_id": category_id
     });
   }
-    static async logout(): Promise<void> {
-    return $api.post('/auth/logout');
+
+  static async deleteAction(action_id: number): Promise<void> {
+    return $api.delete(`/actions/${action_id}`)
   }
 }

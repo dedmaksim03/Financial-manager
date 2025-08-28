@@ -1,5 +1,5 @@
 export interface ActionResponse {
-    id?: number
+    id: number
     message: string 
     sum: number
     date: Date
