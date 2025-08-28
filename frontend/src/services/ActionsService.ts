@@ -4,8 +4,13 @@ import { ActionResponse } from '../models/response/ActionResponse';
 
 export default class ActionsService {
 
-  static async getActions(): Promise<AxiosResponse<ActionResponse[]>> {
-    return $api.get('/actions/get');
+  static async getActions(dateFrom: string, dateTo: string): Promise<AxiosResponse<ActionResponse[]>> {
+    return $api.get('/actions/get', {
+      params: {
+        dateFrom: dateFrom, //"2021-07-19",
+        dateTo: dateTo //"2025-08-19"
+      }
+    });
   }
   static async createAction(type: string, message: string, sum: number, date: string, category_id: number): Promise<void> {
     return $api.post('/actions/create', {

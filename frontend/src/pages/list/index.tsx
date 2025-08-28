@@ -48,7 +48,7 @@ const OperationListPage: React.FC = observer(() => {
           break        
       }
 
-      ActionsService.getActions()
+      ActionsService.getActions(dateFrom, dateTo)
       .then((data) => {
           setActions(data.data);
           setLoadingActions(false);

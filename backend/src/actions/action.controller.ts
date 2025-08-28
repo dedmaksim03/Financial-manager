@@ -1,7 +1,9 @@
-import { Controller, Logger, UseGuards, Request, Get, Post, Res, Body, BadRequestException, Delete, Param } from "@nestjs/common";
+import { Controller, Logger, UseGuards, Request, Get, Post, Res, Body, BadRequestException, Delete, Param, Query } from "@nestjs/common";
 import { JwtAuthGuard } from "src/jwt/jwt.auth.guard";
 import { ActionService } from "./action.service";
 import { ActionDto } from "./dtos/action.dto";
+import { ActionDatefilterDto } from "./dtos/action.datefilter.dto";
+import { Action } from "./action.entity";
 
 @Controller('api/actions')
 @UseGuards(JwtAuthGuard)
@@ -13,9 +15,15 @@ export class ActionsController {
     ){}
 
     @Get('get')
-    async getAllActionsForUser (@Request() req): Promise<ActionDto[]> {
+    async getAllActionsForUser (@Request() req, @Query() actionDatefilterDto: ActionDatefilterDto): Promise<ActionDto[]> {
         this.logger.log(req.user)
-        let actions = await this.actionService.getAllActionsByUser(req.user)
+        let actions: Action[]
+        if (actionDatefilterDto?.dateFrom && actionDatefilterDto?.dateTo) { 
+            actions = await this.actionService.getActionsByUser(req.user, actionDatefilterDto?.dateFrom, actionDatefilterDto?.dateTo)
+        }
+        else {
+            actions = await this.actionService.getAllActionsByUser(req.user)
+        }
         this.logger.log(actions)
         return actions.map((action) => new ActionDto(
                 action.message, 
@@ -30,7 +38,7 @@ export class ActionsController {
     }
 
     @Post('create')
-    async createCategory (@Request() req, @Body() actionDto: ActionDto) {
+    async createAction (@Request() req, @Body() actionDto: ActionDto) {
         let saveResult = await this.actionService.createAction(actionDto)
 
         if (!saveResult) {
