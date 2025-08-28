@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import styles from './index.module.css';
 import { CategoryResponse } from '../../models/response/CategoryResponse';
 import { ActionResponse } from '../../models/response/ActionResponse';
+import { CategoriesPalette } from '../categoriesPalette';
 
 type TransactionType = 'Доход' | 'Расход';
 
@@ -31,17 +32,17 @@ export const TransactionForm: React.FC<Props> = ({
   const [sum, setSum] = useState<number>(0);
   const [date, setDate] = useState<Date>(new Date());
   const [type, setType] = useState<TransactionType>('Расход');
+  const [filteredCategories, setfilteredCategories] = useState<CategoryResponse[]>(categories.filter((c) => {return c.type == type}));
 
   // При изменении editingOperation заполняем форму
-  useEffect(() => {
-    if (editingOperation) {
+  useEffect(() => {   
+    if (editingOperation) {     
       setSelectedCategoryId(editingOperation.category_id);
       setMessage(editingOperation.message);
       setSum(editingOperation.sum);
       setDate(new Date(editingOperation.date));
-      setType(editingOperation.type as TransactionType);
+      setType(editingOperation.category_type as TransactionType);      
     } else {
-      // Сброс формы
       setSelectedCategoryId(null);
       setMessage('');
       setSum(0);
@@ -49,6 +50,18 @@ export const TransactionForm: React.FC<Props> = ({
       setType('Расход');
     }
   }, [editingOperation]);
+
+  useEffect(() => {
+    if (
+      selectedCategoryId !== null &&
+      !filteredCategories.some((cat) => cat.id === selectedCategoryId)
+    ) {
+      setSelectedCategoryId(null);
+    }
+    setfilteredCategories(categories.filter(
+      (category) => category.type === type
+    ))  
+  }, [type, categories]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,28 +92,7 @@ export const TransactionForm: React.FC<Props> = ({
         </div>
       )}
 
-      <div className={styles.palette}>
-        {categories.map((category) => {
-          const categorySum = category.sum || 0;
-          return (
-            <div
-              key={category.id}
-              className={`${styles.colorItem} ${selectedCategoryId === category.id ? styles.selected : ''}`}
-              style={{ backgroundColor: category.color }}
-              onClick={() => setSelectedCategoryId(category.id)}
-              title={category.name}
-            >
-              {selectedCategoryId === category.id && <span className={styles.checkmark}>✓</span>}
-              <div className={styles.categoryInfo}>
-                <div className={styles.categoryName}>{category.name}</div>
-                <div className={styles.categorysum}>
-                  {categorySum.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <CategoriesPalette categories={filteredCategories} selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId} />
 
       <div className={styles.fields}>
         <div className={styles.fieldGroup}>
@@ -133,27 +125,27 @@ export const TransactionForm: React.FC<Props> = ({
         </div>
 
         <div className={styles.fieldGroup}>
-          <div className={styles.radioGroup}>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="Доход"
-                checked={type === 'Доход'}
-                onChange={() => setType('Доход')}
+          <div className={styles.toggleSwitchWrapper}>
+            <div className={styles.toggleSwitch}>
+              <button
+                type="button"
+                className={`${styles.toggleOption} ${type === 'Расход' ? styles.active : ''}`}
+                onClick={() => setType('Расход')}
+              >
+                Расход
+              </button>
+              <button
+                type="button"
+                className={`${styles.toggleOption} ${type === 'Доход' ? styles.active : ''}`}
+                onClick={() => setType('Доход')}
+              >
+                Доход
+              </button>
+              <div
+                className={styles.toggleIndicator}
+                style={{ left: type === 'Расход' ? '0%' : '50%' }}
               />
-              Доход
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="Расход"
-                checked={type === 'Расход'}
-                onChange={() => setType('Расход')}
-              />
-              Расход
-            </label>
+            </div>
           </div>
         </div>
 

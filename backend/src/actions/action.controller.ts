@@ -32,7 +32,8 @@ export class ActionsController {
                 action.category.id,
                 action.id,
                 action.category.name,
-                action.category.color
+                action.category.color,
+                action.category.type
             )
         )
     }

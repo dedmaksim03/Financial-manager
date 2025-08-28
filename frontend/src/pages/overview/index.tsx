@@ -8,6 +8,7 @@ import CategoriesService from '../../services/CategoriesService';
 import { ActionResponse } from '../../models/response/ActionResponse';
 import { observer } from "mobx-react-lite";
 import dateStore, { DateMode } from '../../store/DateStore'
+import { CategoriesPalette } from '../../components/categoriesPalette';
 
 
 export const OverviewPage: React.FC = observer(() => {
@@ -66,7 +67,14 @@ export const OverviewPage: React.FC = observer(() => {
     <div className={styles.overviewContainer}>
       <DonutChart data={expensesData} title="Расходы" />
       <DonutChart data={incomeData} title="Доходы" />
-      <TransactionForm
+      <div className={styles.palette}>
+        <h3 className={styles.paletteTitle}>Расходы</h3>
+        <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Расход'})} />
+        <h3 className={styles.paletteTitle}>Доходы</h3>
+        <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Доход'})} />
+      </div>
+      
+      {/* <TransactionForm
         categories={categories}
         onSubmit={(data) => {
             ActionsService.createAction(
@@ -82,7 +90,7 @@ export const OverviewPage: React.FC = observer(() => {
             .catch(() => console.log("Ошибка при создании Action"))
             console.log('Transaction:', data);
         }}
-        />
+        /> */}
     </div>
   );
 });

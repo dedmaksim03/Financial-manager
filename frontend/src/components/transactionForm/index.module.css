@@ -6,43 +6,6 @@
   margin: 0 auto;
 }
 
-.palette {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.colorItem {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  cursor: pointer;
-  position: relative;
-  border: 2px solid transparent;
-  transition: transform 0.2s;
-}
-
-.colorItem:hover {
-  transform: scale(1.05);
-}
-
-.selected {
-  border-color: #000;
-}
-
-.checkmark {
-  position: absolute;
-  top: 4px;
-  right: 6px;
-  font-size: 18px;
-  color: #fff;
-  font-weight: bold;
-}
-
 .fields {
   display: flex;
   flex-direction: column;
@@ -93,54 +56,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.colorItem {
-  width: 110px; /* увеличить ширину, чтобы вместить текст */
-  height: 110px; /* увеличить высоту */
-  border-radius: 8px;
-  cursor: pointer;
-  position: relative;
-  border: 2px solid transparent;
-  transition: transform 0.2s;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  box-sizing: border-box;
-  color: #fff; /* для текста */
-  font-weight: 600;
-  font-size: 12px;
-  text-align: center;
-}
-
-.categoryInfo {
-  margin-top: 7px;
-  color: #000; /* можно выбрать цвет, читаемый на фоне */
-}
-
-.categoryName {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.categoryAmount {
-  font-size: 12px;
-  color: #555;
-}
-
-.selected {
-  border-color: #000;
-}
-
-.checkmark {
-  position: absolute;
-  top: 4px;
-  right: 6px;
-  font-size: 18px;
-  color: #fff;
-  font-weight: bold;
-}
-
 .editingBanner {
   display: flex;
   justify-content: space-between;
@@ -161,5 +76,49 @@ button:disabled {
   color: #8a6d3b;
   cursor: pointer;
 }
+
+.toggleSwitchWrapper {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: flex;
+  width: 200px;
+  height: 40px;
+  background: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.toggleOption {
+  flex: 1;
+  background: none;
+  border: none;
+  z-index: 1;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.toggleOption.active {
+  font-weight: bold;
+  color: white;
+}
+
+.toggleIndicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: #4caf50;
+  transition: left 0.3s ease;
+  border-radius: 20px;
+  z-index: 0;
+}
+
 
 

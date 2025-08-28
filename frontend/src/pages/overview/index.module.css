@@ -4,3 +4,16 @@
   gap: 20px; /* расстояние между донатами */
   padding-left: 50px;
 }
+
+.palette {
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 2vh; */
+}
+
+.paletteTitle {
+  font-size: 3vh;
+  font-weight: bold;
+  
+}

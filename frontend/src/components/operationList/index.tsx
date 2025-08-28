@@ -50,10 +50,10 @@ const OperationList: React.FC<Props> = ({sortedDates, grouped, handleClick} ) =>
                 </div>
                 <div
                 className={`${styles.amount} ${
-                    op.type == "Расход" ? styles.negative : styles.positive
+                    op.category_type == "Расход" ? styles.negative : styles.positive
                 }`}
                 >
-                {op.sum < 0 ? "-" : "+"}
+                {op.category_type == 'Расход' ? "-" : "+"}
                 {Math.abs(op.sum).toLocaleString("ru-RU")} ₽
                 </div>
             </div>
