@@ -46,16 +46,17 @@
 }
 
 .categoryInfo {
-  margin-top: 7px;
-  color: #000; /* можно выбрать цвет, читаемый на фоне */
+  margin-top: 0.3vh;
+  color: #000;
 }
 
 .categoryName {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 1.7vh;
+  font-weight: bold;
+  margin-bottom: 0.3vh;
 }
 
 .categoryAmount {
-  font-size: 12px;
-  color: #555;
+  font-size: 1.7vh;
+  color: #000000;
 }

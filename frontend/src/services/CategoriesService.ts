@@ -2,6 +2,7 @@ import $api from '../http';
 import { AxiosResponse } from 'axios';
 import { ActionResponse } from '../models/response/ActionResponse';
 import { CategoryResponse } from '../models/response/CategoryResponse';
+import { CategoryRequest } from '../models/request/CategoryRequest';
 
 export default class CategoriesService {
 
@@ -13,4 +14,8 @@ export default class CategoriesService {
       }
     });
   }
+
+  static async createCategory(categoryRequest: CategoryRequest): Promise<AxiosResponse<void>> {
+    return $api.post('/categories/create', categoryRequest)
+  }  
 }

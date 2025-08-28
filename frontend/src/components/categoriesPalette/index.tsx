@@ -6,17 +6,19 @@ import { CategoryResponse } from '../../models/response/CategoryResponse';
 
 type Props = {
   categories: CategoryResponse[];
+  // needActive: boolean;
   selectedCategoryId?: number | null;
   setSelectedCategoryId?: React.Dispatch<React.SetStateAction<number | null>>;
 };
 
 export const CategoriesPalette: React.FC<Props> = ({
   categories,
+  // needActive,
   selectedCategoryId,
   setSelectedCategoryId,
 }) => {
 
-  if (!selectedCategoryId || !setSelectedCategoryId)
+  if (!setSelectedCategoryId)
     return (
       <div className={styles.palette}>
         {categories.map((category) => {
@@ -25,12 +27,14 @@ export const CategoriesPalette: React.FC<Props> = ({
             <div
               key={category.id}
               className={`${styles.colorItem}`}
-              style={{ backgroundColor: category.color }}
+              style={{ 
+                backgroundColor: category.sum != 0 ? category.color : "#dedede"
+              }}
               title={category.name}
             >
               <div className={styles.categoryInfo}>
                 <div className={styles.categoryName}>{category.name}</div>
-                <div className={styles.categorysum}>
+                <div className={styles.categoryAmount}>
                   {categorySum.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
                 </div>
               </div>
@@ -48,14 +52,16 @@ export const CategoriesPalette: React.FC<Props> = ({
             <div
               key={category.id}
               className={`${styles.colorItem} ${selectedCategoryId === category.id ? styles.selected : ''}`}
-              style={{ backgroundColor: category.color }}
+              style={{ 
+                backgroundColor: category.sum != 0 ? category.color : "#dedede"
+              }}
               onClick={() => setSelectedCategoryId(category.id)}
               title={category.name}
             >
               {selectedCategoryId === category.id && <span className={styles.checkmark}>✓</span>}
               <div className={styles.categoryInfo}>
                 <div className={styles.categoryName}>{category.name}</div>
-                <div className={styles.categorysum}>
+                <div className={styles.categoryAmount}>
                   {categorySum.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
                 </div>
               </div>

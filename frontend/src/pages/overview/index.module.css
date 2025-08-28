@@ -1,7 +1,7 @@
 .overviewContainer {
   display: flex;
-  justify-content: flex-start; /* сдвиг влево */
-  gap: 20px; /* расстояние между донатами */
+  justify-content: flex-start;
+  gap: 20px;
   padding-left: 50px;
 }
 
@@ -9,11 +9,10 @@
   margin-left: 10%;
   display: flex;
   flex-direction: column;
-  /* margin-top: 2vh; */
+  max-width: 32vw;
 }
 
 .paletteTitle {
   font-size: 3vh;
   font-weight: bold;
-  
 }

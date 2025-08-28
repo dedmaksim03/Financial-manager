@@ -9,6 +9,7 @@ import { ActionResponse } from '../../models/response/ActionResponse';
 import { observer } from "mobx-react-lite";
 import dateStore, { DateMode } from '../../store/DateStore'
 import { CategoriesPalette } from '../../components/categoriesPalette';
+import { CreateCategoryForm } from '../../components/createCategoryForm';
 
 
 export const OverviewPage: React.FC = observer(() => {
@@ -71,26 +72,11 @@ export const OverviewPage: React.FC = observer(() => {
         <h3 className={styles.paletteTitle}>Расходы</h3>
         <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Расход'})} />
         <h3 className={styles.paletteTitle}>Доходы</h3>
-        <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Доход'})} />
+        <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Доход'})}/>
+        <div style={{marginTop: '2vh'}}>
+          <CreateCategoryForm onCreate={getData}/>
+        </div>  
       </div>
-      
-      {/* <TransactionForm
-        categories={categories}
-        onSubmit={(data) => {
-            ActionsService.createAction(
-                data.type,
-                data.message,
-                data.sum,
-                data.date.toISOString(),
-                data.category_id
-            )
-            .then(() => {
-                getData()              
-            })
-            .catch(() => console.log("Ошибка при создании Action"))
-            console.log('Transaction:', data);
-        }}
-        /> */}
     </div>
   );
 });

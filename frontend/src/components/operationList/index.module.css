@@ -1,12 +1,9 @@
 .container {
-  /* max-height: 400px; */
   height: 90%;
   overflow-y: auto;
   border: 1px solid #ddd;
   padding: 10px;
   margin-left: 5%;
-  /* width: 40%; */
-  font-family: Arial, sans-serif;
 }
 
 .dateGroup {
