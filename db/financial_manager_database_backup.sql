@@ -290,10 +290,7 @@ COPY public.categories (id, name, color, user_id) FROM stdin;
 --
 
 COPY public.users (id, username, password, refresh_token, expires) FROM stdin;
-4	ded_maksim	$2b$10$/aDBwHfwRRAIJrE07FTNXOJrjk1hGDi.kJXxFLrwdTp80R9cbTSz2		2025-05-14 22:48:08.426
-5	kate	$2b$10$3CT3clDPsOF0rJz/r3KKpe5hl10bbIpM29p4lTTrgHAbxOZ8mFxuC		2025-05-14 22:48:48.58
-3	ded	$2b$10$THPUrEN3lVSkowaaxaBxSujcGS3eIGrzMqneZ9T3wtvBm3F.EzhYa	1c2fddbc-1dd1-4129-a096-7e5f933c9346	2025-06-12 20:38:23.511
-2	admin	$2b$10$taUXhz0QGiQKW6GJQbFrc.4.wYmJ9hJjPPvwH39oNcuN.wswtO7ky	61f7c739-2760-4e26-92aa-8e09d5b5aa7b	2025-06-26 15:03:08.764
+1	ded	$2b$10$THPUrEN3lVSkowaaxaBxSujcGS3eIGrzMqneZ9T3wtvBm3F.EzhYa	1c2fddbc-1dd1-4129-a096-7e5f933c9346	2025-06-12 20:38:23.511
 \.
 
 

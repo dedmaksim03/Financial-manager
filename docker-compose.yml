@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     container_name: financial_manager_backend
     ports:
-      - "3000:3000"  # Порт, на котором ваше приложение будет доступно
+      - "3000:3000" 
     environment:
       DB_HOST: db
       DB_PORT: 5432
@@ -28,3 +28,18 @@ services:
       TZ: Europe/Moscow
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./frontend:/usr/src/app/frontend            # монтируем код в контейнер
+      - /usr/src/app/frontend/node_modules      # чтобы node_modules из контейнера не перезаписывались
+    environment:
+      - CHOKIDAR_USEPOLLING=true 
+      - PORT=3001
+      - HOST=0.0.0.0
+    command: yarn start  

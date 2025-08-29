@@ -2,7 +2,7 @@
 FROM node:22.14.0
 
 # Устанавливаем рабочую директорию
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/backend
 
 # Установка часового пояса
 RUN apt-get update && apt-get install -y tzdata
