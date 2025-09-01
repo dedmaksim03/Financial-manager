@@ -1,17 +1,20 @@
 .pageWrapper {
   display: flex;
   height: 100%;
-  padding: 20px;
+  padding: 1vw;
   box-sizing: border-box;
-  gap: 20px;
+  gap: 3vw;
+  justify-content: flex-start;
 }
 
 .leftPane {
-  flex: 0.6;
+  /* flex: 0.6; */
+  width: 40vw;
   overflow-y: auto;
 }
 
 .rightPane {
-  flex: 0.4;
+  /* flex: 0.4; */
   overflow-y: auto;
+  max-width: 30vw;
 }

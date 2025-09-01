@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import  NavBar  from '../../components/navbar/navbar'
+import  NavBar  from '../../components/navbar'
 import styles from './index.module.css'
 import DateSlider from '../../components/dateSlider'
 
