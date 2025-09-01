@@ -9,9 +9,9 @@
 }
 
 .colorItem {
-  width: 110px;
-  height: 110px; 
-  border-radius: 8px;
+  width: 12vh;
+  height: 12vh; 
+  border-radius: 3vh;
   cursor: pointer;
   position: relative;
   border: 2px solid transparent;

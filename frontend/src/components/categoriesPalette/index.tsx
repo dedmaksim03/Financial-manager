@@ -1,19 +1,16 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './index.module.css';
 import { CategoryResponse } from '../../models/response/CategoryResponse';
 
 type Props = {
   categories: CategoryResponse[];
-  // needActive: boolean;
   selectedCategoryId?: number | null;
   setSelectedCategoryId?: React.Dispatch<React.SetStateAction<number | null>>;
 };
 
 export const CategoriesPalette: React.FC<Props> = ({
   categories,
-  // needActive,
   selectedCategoryId,
   setSelectedCategoryId,
 }) => {

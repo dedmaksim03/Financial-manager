@@ -1,12 +1,12 @@
 .overviewContainer {
   display: flex;
   justify-content: flex-start;
-  gap: 20px;
-  padding-left: 50px;
+  gap: 0.7vw;
+  padding: 0 2vw 0 2vw;
 }
 
 .palette {
-  margin-left: 10%;
+  margin-left: 4vw;
   display: flex;
   flex-direction: column;
   max-width: 32vw;
