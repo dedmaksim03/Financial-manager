@@ -9,8 +9,8 @@
 }
 
 .colorItem {
-  width: 12vh;
-  height: 12vh; 
+  width: 11vh;
+  height: 11vh; 
   border-radius: 3vh;
   cursor: pointer;
   position: relative;
@@ -24,7 +24,7 @@
   box-sizing: border-box;
   color: #fff; 
   font-weight: 600;
-  font-size: 12px;
+  font-size: 1vh;
   text-align: center;
 }
 

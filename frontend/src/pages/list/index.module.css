@@ -2,6 +2,7 @@
   display: flex;
   height: 100%;
   padding: 1vw;
+  margin-left: 2vw;
   box-sizing: border-box;
   gap: 3vw;
   justify-content: flex-start;
@@ -16,5 +17,5 @@
 .rightPane {
   /* flex: 0.4; */
   overflow-y: auto;
-  max-width: 30vw;
+  width: 35vw;
 }

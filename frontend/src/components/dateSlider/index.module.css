@@ -7,8 +7,8 @@
   margin-top: 1vh;
   margin-left: 1vw;
   width: 4vw;
-  background-color: #f0f4ff; 
-  border: 1px solid #b3c7f9;
+  background-color: #f8f9fa; /* очень светлый серый */
+  border: 1px solid #d1d3d4; /* светло-серая рамка */
   border-radius: 8px;
 }
 
@@ -16,15 +16,15 @@
   padding: 0.5vw 1vh;
   font-size: 2vh;
   cursor: pointer;
-  background-color: #ffffff;
-  color: #1a73e8; 
-  border: 1px solid #1a73e8;
+  background-color: #ffffff; /* белый фон */
+  color: #000000; /* средний серый текст */
+  border: 1px solid #ced4da; /* светло-серая рамка */
   border-radius: 4px;
   transition: background-color 0.2s;
 }
 
 .arrow:hover {
-  background-color: #e8f0fe;
+  background-color: #e9ecef; /* светло-серый при наведении */
 }
 
 .centerBlock {
@@ -38,20 +38,20 @@
 .dateText {
   font-size: 2vh;
   font-weight: bold;
-  color: #1a237e;
+  color: #000000; /* тёмно-серый */
 }
 
 .modeButton {
   padding: 0.3vw 0.5vh;
-  font-size: 2vh;
+  font-size: 1.7vh;
   cursor: pointer;
-  background-color: #e3f2fd; 
-  color: #1565c0;
-  border: 1px solid #64b5f6;
+  background-color: #e9ecef; /* светло-серый фон */
+  color: #495057; /* тёмно-серый текст */
+  border: 1px solid #ced4da; /* светло-серая рамка */
   border-radius: 4px;
   transition: background-color 0.2s;
 }
 
 .modeButton:hover {
-  background-color: #bbdefb;
+  background-color: #dee2e6; /* чуть темнее при наведении */
 }

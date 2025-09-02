@@ -1,32 +1,34 @@
 .transactionForm {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  /* max-width: 550px; */
+  gap: 1vh;
   margin: 0 auto;
 }
 
 .fields {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1vh;
 }
 
 .fieldGroup {
   background-color: #f9f9f9;
-  padding: 30px;
+  padding: 0.7vw;
   border-radius: 8px;
   border: 1px solid #ccc;
+  display: flex;
+  
 }
 
 .fieldGroup input[type='text'],
 .fieldGroup input[type='number'] {
   width: 100%;
-  padding: 8px 10px;
-  font-size: 16px;
+  padding: 0.7vw;
+  font-size: 2vh;
   border: 1px solid #bbb;
   border-radius: 6px;
   background-color: #fff;
+  margin-right: 1vw;
 }
 
 .fieldGroup .react-datepicker-wrapper {
@@ -41,23 +43,73 @@
 }
 
 button {
-  padding: 10px;
-  background-color: #007bff;
   color: white;
-  font-size: 16px;
+  font-size: 2vh;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-button:disabled {
+.buttonSubmit {
+  background-color: #4590e0;
+  color: white;
+  flex-grow: 1;
+  padding: 0.7vh 1.2vw;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(69, 144, 224, 0.5);
+}
+
+.buttonSubmit:hover:not(:disabled) {
+  background-color: #2b7ed6;
+  box-shadow: 0 4px 12px rgba(43, 126, 214, 0.7);
+}
+
+button:disabled,
+.buttonSubmit:disabled,
+.buttonDelete:disabled {
   background-color: #aaa;
   cursor: not-allowed;
+  box-shadow: none;
+  color: #666;
+}
+
+.buttonSubmit:disabled:hover,
+.buttonDelete:disabled:hover {
+  background-color: #aaa;
+  box-shadow: none;
+  color: #666;
 }
 
 .buttonDelete {
-  background-color: #d1130d;
+  flex-grow: 1;
+  padding: 0.7vh 1.2vw;
+  background-color: #f9d6d5;
+  color: #c7140e;
+  border: 2px solid #c7140e;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+}
+
+.buttonDelete:hover:not(:disabled) {
+  background-color: #c7140e;
+  color: white;
+  box-shadow: 0 0 8px rgba(199, 20, 14, 0.7);
+}
+
+.bottomButtonsContainer {
+  display: flex;
+  gap: 1vw;
+  justify-content: center;
+  width: 100%;
+  height: 5vh;
 }
 
 .editingBanner {
@@ -66,9 +118,10 @@ button:disabled {
   align-items: center;
   background-color: #fff8dc;
   border: 1px solid #f0ad4e;
-  padding: 8px 12px;
+  padding: 1vh 1.5vh;
   border-radius: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
+  font-size: 2.3vh;
   font-weight: bold;
   color: #8a6d3b;
 }
@@ -76,13 +129,12 @@ button:disabled {
 .cancelButton {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 2vh;
   color: #8a6d3b;
   cursor: pointer;
 }
 
 .toggleSwitchWrapper {
-  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -90,8 +142,8 @@ button:disabled {
 .toggleSwitch {
   position: relative;
   display: flex;
-  width: 200px;
-  height: 40px;
+  width: 7vw;
+  height: 4vh;
   background: #eee;
   border-radius: 20px;
   overflow: hidden;
@@ -103,7 +155,7 @@ button:disabled {
   background: none;
   border: none;
   z-index: 1;
-  font-size: 16px;
+  font-size: 1.5vh;
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -111,6 +163,7 @@ button:disabled {
 .toggleOption.active {
   font-weight: bold;
   color: white;
+  font-size: 1.5vh;
 }
 
 .toggleIndicator {
@@ -118,7 +171,7 @@ button:disabled {
   top: 0;
   bottom: 0;
   width: 50%;
-  background-color: #4caf50;
+  background-color: #56a5da;
   transition: left 0.3s ease;
   border-radius: 20px;
   z-index: 0;

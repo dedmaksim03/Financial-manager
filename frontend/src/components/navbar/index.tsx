@@ -14,13 +14,13 @@ const Navbar: React.FC = () => {
       className={styles.menu}
     >
       <Menu.Item key="/overview">
-        <Link to="/overview">Главная</Link>
+        <Link to="/overview"><p>Обзор</p></Link>
       </Menu.Item>
       <Menu.Item key="/list">
-        <Link to="/list">О нас</Link>
+        <Link to="/list"><p>Список операций</p></Link>
       </Menu.Item>
       <Menu.Item key="/other">
-        <Link to="/other">Контакты</Link>
+        <Link to="/other"><p>Анализ</p></Link>
       </Menu.Item>
     </Menu>
   );

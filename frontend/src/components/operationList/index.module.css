@@ -1,12 +1,14 @@
 .container {
-  height: 90%;
+  height: 93%;
   overflow-y: auto;
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 0.5vw;
+  font-size: 1.7vh;
+  /* color: #353434; */
 }
 
 .dateGroup {
-  margin-bottom: 20px;
+  margin-bottom: 0.4vh;
 }
 
 .dateHeader {
@@ -36,19 +38,19 @@
   justify-content: center;
   align-items: center;
   color: #fff;
-  margin-right: 10px;
-  font-size: 18px;
+  margin-right: 1vw;
+  font-size: 3vh;
   flex-shrink: 0;
 }
 
 .categoryName {
   font-weight: bold;
-  font-size: 22px;
-  margin-bottom: 0.3vh;
+  font-size: 2.6vh;
+  margin-bottom: 0.4vh;
 }
 
 .message {
-  font-size: 18px;
+  font-size: 2.1vh;
   color: #666;
 }
 
@@ -57,6 +59,7 @@
   min-width: 80px;
   font-size: 1.2vw;
   text-align: right;
+  margin-right: 1vw;
   flex-shrink: 0;
 }
 
