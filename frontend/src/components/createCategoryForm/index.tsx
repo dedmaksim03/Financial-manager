@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './index.module.css';
 import CategoriesService from '../../services/CategoriesService';
+import { Button } from "antd";
 
 type TransactionType = 'Доход' | 'Расход';
 
@@ -65,7 +66,7 @@ export const CreateCategoryForm: React.FC<Props> = ({ onCreate }) => {
         <div className={styles.popup}>
           <div className={styles.field}>
             <label>
-              Название:
+              <p>Название:</p>
               <input
                 type="text"
                 value={name}
@@ -78,7 +79,7 @@ export const CreateCategoryForm: React.FC<Props> = ({ onCreate }) => {
 
           <div className={styles.field}>
             <label>
-              Цвет:
+              <p>Цвет:</p>
               <input
                 type="color"
                 value={color}
@@ -90,7 +91,7 @@ export const CreateCategoryForm: React.FC<Props> = ({ onCreate }) => {
 
           <div className={styles.field}>
             <label>
-              Тип:
+              <p>Тип:</p>
               <select
                 value={type}
                 onChange={(e) => setType(e.target.value as TransactionType)}
@@ -101,10 +102,16 @@ export const CreateCategoryForm: React.FC<Props> = ({ onCreate }) => {
               </select>
             </label>
           </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
+            <Button color="primary" variant="filled" onClick={handleCreate}>
+              Создать
+            </Button>
+          </div>
 
-          <button onClick={handleCreate} className={styles.createButton} type="button">
+
+          {/* <button onClick={handleCreate} className={styles.createButton} type="button">
             Создать
-          </button>
+          </button> */}
         </div>
       )}
     </div>

@@ -2,9 +2,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate, redirect } from 'r
 import './App.css';
 import { Header } from './components/header';
 import { MainPage } from './pages/main';
-import { LoginPage } from './pages/login';
 import { BodyPage } from './pages/body';
-import { RegistrationPage } from './pages/registration';
 import { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Context } from '.';

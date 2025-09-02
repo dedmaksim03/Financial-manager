@@ -42,14 +42,14 @@
   margin-top: 5px;
 }
 
-button {
+/* button {
   color: white;
   font-size: 2vh;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s;
-}
+} */
 
 .buttonSubmit {
   background-color: #4590e0;

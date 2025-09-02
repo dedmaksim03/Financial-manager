@@ -5,20 +5,20 @@
 
 .button {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 2vh;
   background: none;
   border: none;
-  padding: 4px 8px;
+  padding: 0.8vh 1vh;
   user-select: none;
 }
 
 .popup {
   position: absolute;
-  top: 110%;
-  right: 0;
+  top: -140%;   
+  right: 190%; 
   z-index: 10;
   padding: 1rem;
-  width: 250px;
+  width: 15vh;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -34,8 +34,8 @@
 .inputColor {
   width: 100%;
   box-sizing: border-box;
-  font-size: 14px;
-  padding: 6px 8px;
+  font-size: 1.5vh;
+  padding: 1vh 1.2vh;
   border: 1px solid #ccc;
   border-radius: 4px;
 }

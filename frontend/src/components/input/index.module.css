@@ -4,6 +4,7 @@
     width: 100%;
     border: 1.5px solid rgba(208, 213, 221, 1);
     border-radius: 0.5em;
+    padding: 1vh;
 }
 
 .input:hover {
