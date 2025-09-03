@@ -1,18 +1,20 @@
-import { Button, ButtonProps } from "antd";
+import { Button } from "antd";
 import styles from './index.module.css'
 import { sign } from "crypto";
 
-interface Props {
-    color: "default" | "primary" | "danger" | "blue" | "purple" | "cyan" | "green" | "magenta" | "pink" | "red" | "orange" | "yellow" | "volcano" | "geekblue" | "lime" | "gold" | undefined
-    onClick: () => void
+type Props = React.ComponentProps<typeof Button> & {
     children: React.ReactNode;
-}
+    variant?: 'filled' | 'outlined' | 'text' | 'dashed' | 'solid';
+};
 
-const ButtonBase: React.FC<Props> = ({ color, onClick, children}) =>  {
+const ButtonBase: React.FC<Props> = (props) =>  {
+
+    const { variant = 'solid', ...restProps } = props; 
+
     return (
         <div className={styles.button}>
-            <Button block type="primary" variant="filled" onClick={onClick} style={{height: "100%", fontSize: '2vh'}}>
-                {children}
+            <Button {...props} block variant={variant} style={{height: "100%", width: '100%', fontSize: '2vh', borderRadius: '15px'}}>
+                {props.children}
             </Button>
         </div>
 
@@ -20,4 +22,5 @@ const ButtonBase: React.FC<Props> = ({ color, onClick, children}) =>  {
 }
 
 export default ButtonBase
+export type CommonButtonProps = Props
 

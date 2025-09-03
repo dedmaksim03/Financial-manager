@@ -5,6 +5,10 @@
   font-size: large;
 }
 
+.menuItem {
+  padding-left: 2vw;
+}
+
 p {
   font-size: 1.7vh;
 }

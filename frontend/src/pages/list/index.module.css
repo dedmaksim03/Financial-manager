@@ -2,20 +2,16 @@
   display: flex;
   height: 100%;
   padding: 1vw;
-  margin-left: 2vw;
+  margin-left: 3vw;
   box-sizing: border-box;
-  gap: 3vw;
+  gap: 4vw;
   justify-content: flex-start;
 }
 
 .leftPane {
-  /* flex: 0.6; */
-  width: 40vw;
-  overflow-y: auto;
+  width: 35vw;
 }
 
 .rightPane {
-  /* flex: 0.4; */
-  overflow-y: auto;
   width: 35vw;
 }

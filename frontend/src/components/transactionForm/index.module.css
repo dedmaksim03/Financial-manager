@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 1vh;
   margin: 0 auto;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .fields {
@@ -14,8 +16,8 @@
 .fieldGroup {
   background-color: #f9f9f9;
   padding: 0.7vw;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: 0.7vw;
+  border: 0.1vh solid #ccc;
   display: flex;
   
 }
@@ -35,75 +37,6 @@
   width: 100%;
 }
 
-.radioGroup {
-  display: flex;
-  gap: 20px;
-  font-size: 16px;
-  margin-top: 5px;
-}
-
-/* button {
-  color: white;
-  font-size: 2vh;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-} */
-
-.buttonSubmit {
-  background-color: #4590e0;
-  color: white;
-  flex-grow: 1;
-  padding: 0.7vh 1.2vw;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px rgba(69, 144, 224, 0.5);
-}
-
-.buttonSubmit:hover:not(:disabled) {
-  background-color: #2b7ed6;
-  box-shadow: 0 4px 12px rgba(43, 126, 214, 0.7);
-}
-
-button:disabled,
-.buttonSubmit:disabled,
-.buttonDelete:disabled {
-  background-color: #aaa;
-  cursor: not-allowed;
-  box-shadow: none;
-  color: #666;
-}
-
-.buttonSubmit:disabled:hover,
-.buttonDelete:disabled:hover {
-  background-color: #aaa;
-  box-shadow: none;
-  color: #666;
-}
-
-.buttonDelete {
-  flex-grow: 1;
-  padding: 0.7vh 1.2vw;
-  background-color: #f9d6d5;
-  color: #c7140e;
-  border: 2px solid #c7140e;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: none;
-}
-
-.buttonDelete:hover:not(:disabled) {
-  background-color: #c7140e;
-  color: white;
-  box-shadow: 0 0 8px rgba(199, 20, 14, 0.7);
-}
-
 .bottomButtonsContainer {
   display: flex;
   gap: 1vw;
@@ -117,9 +50,9 @@ button:disabled,
   justify-content: space-between;
   align-items: center;
   background-color: #fff8dc;
-  border: 1px solid #f0ad4e;
+  border: 0.3vh solid #f0ad4e;
   padding: 1vh 1.5vh;
-  border-radius: 4px;
+  border-radius: 0.4vw;
   margin-bottom: 1vh;
   font-size: 2.3vh;
   font-weight: bold;
@@ -145,9 +78,9 @@ button:disabled,
   width: 7vw;
   height: 4vh;
   background: #eee;
-  border-radius: 20px;
+  border-radius: 2vw;
   overflow: hidden;
-  border: 1px solid #ccc;
+  border: 0.3vh solid #ccc;
 }
 
 .toggleOption {
@@ -173,9 +106,6 @@ button:disabled,
   width: 50%;
   background-color: #56a5da;
   transition: left 0.3s ease;
-  border-radius: 20px;
+  border-radius: 1vw;
   z-index: 0;
 }
-
-
-

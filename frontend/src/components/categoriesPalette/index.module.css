@@ -1,8 +1,8 @@
 .palette {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
+  gap: 0.8vw;
+  padding: 0.8vw;
   background-color: #f9f9f9;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -14,13 +14,13 @@
   border-radius: 3vh;
   cursor: pointer;
   position: relative;
-  border: 2px solid transparent;
+  border: 0.3vh solid transparent;
   transition: transform 0.2s;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 0.3vh;
   box-sizing: border-box;
   color: #fff; 
   font-weight: 600;
@@ -38,9 +38,9 @@
 
 .checkmark {
   position: absolute;
-  top: 4px;
-  right: 6px;
-  font-size: 18px;
+  top: 0.2vh;
+  right: 0.5vw;
+  font-size: 2vh;
   color: #fff;
   font-weight: bold;
 }

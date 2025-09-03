@@ -5,7 +5,7 @@ import styles from './index.module.css';
 import { CategoryResponse } from '../../models/response/CategoryResponse';
 import { ActionResponse } from '../../models/response/ActionResponse';
 import { CategoriesPalette } from '../categoriesPalette';
-import { Button } from 'antd';
+import { ButtonDelete, ButtonSubmit } from '../buttons';
 
 type TransactionType = 'Доход' | 'Расход';
 
@@ -159,13 +159,10 @@ export const TransactionForm: React.FC<Props> = ({
         </div>
         
         <div className={styles.bottomButtonsContainer}>
-          <button type="submit" className={styles.buttonSubmit} disabled={!selectedCategoryId && !editingOperation}>
-            {editingOperation ? 'Сохранить изменения' : 'Создать'}
-          </button>
+          <ButtonSubmit htmlType="submit" disabled={!selectedCategoryId && !editingOperation}>{editingOperation ? 'Сохранить изменения' : 'Создать'}</ButtonSubmit>
+
           {editingOperation && (
-            <button className={styles.buttonDelete} onClick={() => onDelete(editingOperation.id)}>
-              Удалить
-            </button>
+            <ButtonDelete onClick={() => onDelete(editingOperation.id)} variant='filled'>Удалить</ButtonDelete>
           )}
         </div>
 

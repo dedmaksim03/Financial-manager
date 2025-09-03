@@ -13,13 +13,14 @@ const Navbar: React.FC = () => {
       selectedKeys={[location.pathname]}
       className={styles.menu}
     >
-      <Menu.Item key="/overview">
-        <Link to="/overview"><p>Обзор</p></Link>
-      </Menu.Item>
-      <Menu.Item key="/list">
+        <Menu.Item key="/overview" style={{padding: '0px 0px 0px 3vw', height: '5vh', borderRadius: '1vh'}}>
+          <Link to="/overview"><p>Обзор</p></Link>
+        </Menu.Item>
+
+      <Menu.Item key="/list" style={{padding: '0px 0px 0px 3vw', height: '5vh', borderRadius: '1vh'}}>
         <Link to="/list"><p>Список операций</p></Link>
       </Menu.Item>
-      <Menu.Item key="/other">
+      <Menu.Item key="/other" style={{padding: '0px 0px 0px 3vw', height: '5vh', borderRadius: '1vh'}}>
         <Link to="/other"><p>Анализ</p></Link>
       </Menu.Item>
     </Menu>

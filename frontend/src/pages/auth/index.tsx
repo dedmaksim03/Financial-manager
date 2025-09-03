@@ -56,9 +56,8 @@ export const AuthPage = () => {
 
                 <div className={styles.inputButton}>
                     <ButtonSubmit
-                        innerText={isRegistration ? "Создать" : "Вход"}
                         onClick={isRegistration ? onRegistrationClick : onLoginClick}
-                    />
+                    >{isRegistration ? "Создать" : "Вход"}</ButtonSubmit>
                 </div>
 
                 <p
