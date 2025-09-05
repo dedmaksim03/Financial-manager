@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './index.module.css';
 import CategoriesService from '../../services/CategoriesService';
-import { Button } from "antd";
+import { ButtonSubmit } from '../buttons';
 
 type TransactionType = 'Доход' | 'Расход';
 
@@ -102,16 +102,11 @@ export const CreateCategoryForm: React.FC<Props> = ({ onCreate }) => {
               </select>
             </label>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
-            <Button color="primary" variant="filled" onClick={handleCreate}>
+          <div className={styles.button}>
+            <ButtonSubmit variant="filled" onClick={handleCreate}>
               Создать
-            </Button>
+            </ButtonSubmit>
           </div>
-
-
-          {/* <button onClick={handleCreate} className={styles.createButton} type="button">
-            Создать
-          </button> */}
         </div>
       )}
     </div>

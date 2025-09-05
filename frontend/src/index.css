@@ -2,6 +2,7 @@
   --global-font-family: 'Josefin Sans';
   --main-color: rgba(222, 239, 255, 1);
   --main-color-dark: #cbe5fd;
+  --input-font-size: 16px;
 }
 
 input {

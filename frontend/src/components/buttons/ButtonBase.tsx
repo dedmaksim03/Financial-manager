@@ -13,7 +13,7 @@ const ButtonBase: React.FC<Props> = (props) =>  {
 
     return (
         <div className={styles.button}>
-            <Button {...props} block variant={variant} style={{height: "100%", width: '100%', fontSize: '2vh', borderRadius: '15px'}}>
+            <Button {...props} block variant={variant} style={{height: "100%", width: '100%', fontSize: '1em', borderRadius: '15px', textWrap: 'wrap'}}>
                 {props.children}
             </Button>
         </div>

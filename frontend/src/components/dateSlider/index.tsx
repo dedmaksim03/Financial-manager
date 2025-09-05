@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import dateStore from "../../store/DateStore";
 import styles from "./index.module.css";
+import { ButtonSubmit } from "../buttons";
 
 const modes: ("month" | "year" | "all")[] = ["month", "year", "all"];
 const modeLabels: Record<string, string> = {
@@ -27,9 +28,14 @@ const DateSlider: React.FC = observer(() => {
 
       <button onClick={() => dateStore.prev()} className={styles.arrow}>↓</button>
 
-        <button onClick={handleModeSwitch} className={styles.modeButton}>
+      <div className={styles.modeButton}>
+        <ButtonSubmit color="default" variant='filled' onClick={handleModeSwitch}>{modeLabels[dateStore.mode]}</ButtonSubmit>
+      </div>
+      
+
+        {/* <button onClick={handleModeSwitch} className={styles.modeButton}>
             {modeLabels[dateStore.mode]}
-        </button>
+        </button> */}
     </div>
   );
 });

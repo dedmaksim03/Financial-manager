@@ -125,12 +125,15 @@ export const TransactionForm: React.FC<Props> = ({
         </div>
 
         <div className={styles.fieldGroup}>
-          <DatePicker
-            selected={date}
-            onChange={(date) => date && setDate(date)}
-            dateFormat="dd.MM.yyyy"
-            placeholderText="Дата"
-          />
+          <div className={styles.datePicker}>
+            <DatePicker
+              selected={date}
+              onChange={(date) => date && setDate(date)}
+              dateFormat="dd.MM.yyyy"
+              placeholderText="Дата"
+            />            
+          </div>
+
         </div>
 
         <div className={styles.fieldGroup}>
