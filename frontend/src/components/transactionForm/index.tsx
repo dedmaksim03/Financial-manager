@@ -101,7 +101,10 @@ export const TransactionForm: React.FC<Props> = ({
         </div>
       )}
 
-      <CategoriesPalette categories={filteredCategories} selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId} />
+      <div className={styles.categoriesPalette}>
+        <CategoriesPalette categories={filteredCategories} selectedCategoryId={selectedCategoryId} setSelectedCategoryId={setSelectedCategoryId} />
+      </div>
+      
 
       <div className={styles.fields}>
         <div className={styles.fieldGroup}>

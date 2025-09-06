@@ -1,23 +1,21 @@
 .main_сontainer {
     display: flex;
-    height: 100%;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: 100%;
 }
-
 .form_container {
     display: grid;
-    grid-gap: 2vh;
+    grid-gap: 1rem;
     align-items: center;
     justify-items: center;
-    margin-bottom: 10%;
-    width: 22vw;
-    max-width: 50vh;
-    font-size: 2.3vh;
+    margin-bottom: 2rem;
+    width: 30rem;
+    font-size: 1.5rem;
 }
 
 .bottomHint {
-    font-size: 2vh;
+    font-size: 1.2rem;
 }
 
 .bottomHint:hover {
@@ -29,9 +27,9 @@
 }
 
 .inputButton {
-    margin-top: 2vh;
+    margin-top: 1rem;
     width: 50%;
-    height: 4vh
+    height: 2.2rem
 }
 
 

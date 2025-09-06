@@ -1,17 +1,22 @@
 .pageWrapper {
   display: flex;
-  height: 100%;
-  padding: 1vw;
-  margin-left: 3vw;
-  box-sizing: border-box;
-  gap: 4vw;
-  justify-content: flex-start;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-grow: 1; 
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .leftPane {
-  width: 35vw;
+  /* width: 45rem; */
+  min-width: 15rem;
+  width: 40vw;
+  display: flex;
+  height: 100%;
 }
 
 .rightPane {
+  /* width: 40rem; */
+  min-width: 15rem;
   width: 35vw;
 }

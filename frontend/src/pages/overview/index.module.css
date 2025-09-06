@@ -1,22 +1,25 @@
 .overviewContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   height: 100%;
   width: 100%;
-  padding-right: 1rem;
+  overflow-y: auto;
 }
 
 .donuts {
   display: flex;
-  width: 45rem;
+  width: 30vw;
+  min-width: 35rem;
 }
 
 .palette {
   display: flex;
   flex-direction: column;
-  width: 45rem;
+  width: 30vw;
+  min-width: 35rem;
   max-height: 42rem;
+  overflow-y: auto;
 }
 
 .paletteTitle {

@@ -1,66 +1,62 @@
 .container {
-  height: 93%;
+  /* height: 100rem; */
   overflow-y: auto;
-  border: 1px solid #ddd;
-  padding: 0.5vw;
-  font-size: 1.7vh;
-  /* color: #353434; */
+  border: 0.1rem solid #ddd;
+  font-size: 1rem;
+  flex-grow: 1;
 }
 
 .dateGroup {
-  margin-bottom: 0.4vh;
+  margin-bottom: 0.4rem;
 }
 
 .dateHeader {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+  border-bottom: 0.1rem solid #ccc;
+  padding-bottom: 0.2rem;
 }
 
 .operationRow {
   display: flex;
   align-items: center;
-  padding: 1vh 0;
-  border-bottom: 1px solid #eee;
-  cursor: pointer; /* Показываем, что можно кликнуть */
+  padding: 1rem 0;
+  border-bottom: 0.1rem solid #eee;
+  cursor: pointer;
+  margin: 0 0.3rem;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .operationRow:hover {
-  background-color: #f0f8ff; /* светлый голубой фон при наведении */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f0f8ff;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 }
 
 .categoryIcon {
-  width: 2.3vw;
-  height: 2.3vw;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  margin-right: 1vw;
-  font-size: 3vh;
-  flex-shrink: 0;
+  margin: 0 1rem 0 0.5rem;
 }
 
 .categoryName {
   font-weight: bold;
-  font-size: 2.6vh;
-  margin-bottom: 0.4vh;
+  font-size: 1.6rem;
+  margin-bottom: 0.2rem;
 }
 
 .message {
-  font-size: 2.1vh;
+  font-size: 1.3rem;
   color: #666;
 }
 
 .amount {
   font-weight: bold;
-  min-width: 80px;
-  font-size: 1.2vw;
+  min-width: 2rem;
+  font-size: 1.5rem;
   text-align: right;
-  margin-right: 1vw;
-  flex-shrink: 0;
+  margin-right: 1.2rem;
 }
 
 .amount.negative {

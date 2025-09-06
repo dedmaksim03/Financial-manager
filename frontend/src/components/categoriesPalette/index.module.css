@@ -1,7 +1,7 @@
 .palette {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 0.7rem;
   background-color: #f9f9f9;
   border-radius: 1rem;

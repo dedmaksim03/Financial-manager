@@ -1,48 +1,47 @@
 .transactionForm {
   display: flex;
   flex-direction: column;
-  gap: 1vh;
-  margin: 0 auto;
   overflow-y: auto;
+  gap: 0.8rem;
   height: 100%;
+  width: 100%;
+}
+
+.categoriesPalette {
+  height: 15rem;
+  overflow-y: auto;
 }
 
 .fields {
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  gap: 0.8rem;
 }
 
 .fieldGroup {
   background-color: #f9f9f9;
-  padding: 0.7vw;
-  border-radius: 0.7vw;
-  border: 0.1vh solid #ccc;
+  padding: 0.7rem;
+  border-radius: 0.7rem;
+  border: 0.1rem solid #ccc;
   display: flex;
-  
 }
 
 .fieldGroup input[type='text'],
 .fieldGroup input[type='number'] {
   width: 100%;
-  padding: 0.7vw;
-  font-size: 2vh;
-  border: 1px solid #bbb;
-  border-radius: 6px;
+  padding: 0.7rem;
+  font-size: 1.2rem;
+  border: 0.1rem solid #bbb;
+  border-radius: 0.5rem;
   background-color: #fff;
-  margin-right: 1vw;
-}
-
-.fieldGroup .react-datepicker-wrapper {
-  width: 100%;
 }
 
 .bottomButtonsContainer {
   display: flex;
-  gap: 1vw;
+  gap: 1rem;
   justify-content: center;
   width: 100%;
-  height: 5vh;
+  height: 2.3rem;
 }
 
 .editingBanner {
@@ -50,11 +49,11 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff8dc;
-  border: 0.3vh solid #f0ad4e;
-  padding: 1vh 1.5vh;
-  border-radius: 0.4vw;
-  margin-bottom: 1vh;
-  font-size: 2.3vh;
+  border: 0.1rem solid #f0ad4e;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #8a6d3b;
 }
@@ -62,7 +61,7 @@
 .cancelButton {
   background: none;
   border: none;
-  font-size: 2vh;
+  font-size: 1.2rem;
   color: #8a6d3b;
   cursor: pointer;
 }
@@ -75,12 +74,12 @@
 .toggleSwitch {
   position: relative;
   display: flex;
-  width: 7vw;
-  height: 4vh;
+  width: 10rem;
+  height: 2rem;
   background: #eee;
-  border-radius: 2vw;
+  border-radius: 2rem;
   overflow: hidden;
-  border: 0.3vh solid #ccc;
+  border: 0.1rem solid #ccc;
 }
 
 .toggleOption {
@@ -88,7 +87,7 @@
   background: none;
   border: none;
   z-index: 1;
-  font-size: 1.5vh;
+  font-size: 1rem;
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -96,7 +95,6 @@
 .toggleOption.active {
   font-weight: bold;
   color: white;
-  font-size: 1.5vh;
 }
 
 .toggleIndicator {
@@ -106,77 +104,11 @@
   width: 50%;
   background-color: #56a5da;
   transition: left 0.3s ease;
-  border-radius: 1vw;
+  border-radius: 2rem;
   z-index: 0;
 }
 
 .datePicker {
-  font-size: 1rem;
-  width: 250px;
-  max-width: 100%;
+  z-index: 10;
 }
 
-@media (max-width: 600px) {
-  .datePicker {
-    font-size: 0.85rem;
-    width: 200px;
-  }
-}
-
-.datePicker input {
-  width: 100%;
-  padding: 0.5em 0.75em;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 0.3em;
-  box-sizing: border-box;
-}
-
-:global(.react-datepicker) {
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.4em;
-  box-shadow: 0 0.5em 1em rgba(0,0,0,0.1);
-}
-
-:global(.react-datepicker__header) {
-  background-color: #f0f0f0;
-  padding: 0.5em;
-  border-bottom: 1px solid #ccc;
-  font-weight: 600;
-  font-size: 1em;
-}
-
-:global(.react-datepicker__day-names) {
-  margin-top: 0.5em;
-  font-size: 0.85em;
-}
-
-:global(.react-datepicker__day) {
-  width: 2em;
-  height: 2em;
-  line-height: 2em;
-  margin: 0.15em;
-  border-radius: 0.3em;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-:global(.react-datepicker__day:hover) {
-  background-color: #e6f7ff;
-}
-
-:global(.react-datepicker__day--selected) {
-  background-color: #1890ff;
-  color: white;
-}
-
-@media (max-width: 600px) {
-  :global(.react-datepicker__day) {
-    width: 1.6em;
-    height: 1.6em;
-    line-height: 1.6em;
-    margin: 0.1em;
-  }
-}

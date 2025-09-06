@@ -72,9 +72,14 @@ export const OverviewPage: React.FC = observer(() => {
       </div>
       <div className={styles.palette}>
         <h3 className={styles.paletteTitle}>Расходы</h3>
-        <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Расход'})} />
+        <div className={styles.categoriesPalette}>
+          <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Расход'})} />
+        </div>
         <h3 className={styles.paletteTitle}>Доходы</h3>
-        <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Доход'})}/>
+        <div className={styles.categoriesPalette}>
+          <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Доход'})}/>
+        </div>        
+        
         <div style={{marginTop: '2vh'}}>
           <CreateCategoryForm onCreate={getData}/>
         </div>  
