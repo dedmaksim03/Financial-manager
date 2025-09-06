@@ -25,42 +25,36 @@ function App() {
     // }
   }, []);
 
-  if (store.isLoading) {
-    return <>
-    <Header/>
-    <BodyPage>
-      Загрузка
-    </BodyPage>       
-  </>
-  }
-
-  if (!store.isAuth) {
-      console.log(store.isAuth)
-      return <>
-        <Header/>
-        <BodyPage>
-          <AuthPage/>
-        </BodyPage>       
-      </>
-  }
-
   return (
-    <Router>
-      <Header username={store.username}/>
-      <BodyPage>
-        <MainPage>
-        <Routes>
-            <Route path="/overview" Component={OverviewPage}/>
-            <Route path="/list" Component={OperationListPage}/>
-            <Route path="/*" Component={OtherPage}/>
-          {/* <Route path="/login" Component={LoginPage}/>
-          <Route path="/registration" Component={RegistrationPage}/> */}
-        </Routes>  
-        </MainPage>
-      </BodyPage>
+    <div className='appWrapper'>
+      <Router>
+        <Header username={store.username}/>
+        <BodyPage>
+          {store.isLoading && (
+            'Загрузка'
+          )}
 
-    </Router>
-  );
+          {!store.isAuth && (
+            <AuthPage/>
+          )}
+
+          {store.isAuth && (
+            <MainPage>
+              <Routes>
+                  <Route path="/overview" Component={OverviewPage}/>
+                  <Route path="/list" Component={OperationListPage}/>
+                  <Route path="/*" Component={OtherPage}/>
+                {/* <Route path="/login" Component={LoginPage}/>
+                <Route path="/registration" Component={RegistrationPage}/> */}
+              </Routes>  
+            </MainPage>          
+          )}
+        </BodyPage>          
+      </Router>
+    
+    </div>
+
+  )
 }
 
 export default observer(App);

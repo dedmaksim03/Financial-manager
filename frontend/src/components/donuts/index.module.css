@@ -2,8 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3vh;
+  gap: 1rem;
   text-align: center;
-  width: 23vw;
-  height: 55vh;
+  width: 25rem;
+  height: 30rem;
+}
+
+.donutTitle {
+  font-size: 2rem;
 }

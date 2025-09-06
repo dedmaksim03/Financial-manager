@@ -1,18 +1,25 @@
 .overviewContainer {
   display: flex;
-  justify-content: flex-start;
-  gap: 0.7vw;
-  padding: 0 2vw 0 2vw;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.donuts {
+  display: flex;
+  width: 45rem;
 }
 
 .palette {
-  margin-left: 4vw;
   display: flex;
   flex-direction: column;
-  max-width: 32vw;
+  width: 45rem;
+  max-height: 42rem;
 }
 
 .paletteTitle {
-  font-size: 3vh;
+  font-size: 2rem;
   font-weight: bold;
 }

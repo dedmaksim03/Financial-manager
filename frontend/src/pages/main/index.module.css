@@ -1,4 +1,28 @@
 .home_page {
     display: flex;
     height: 100%;
+    width: 100%;
+}
+
+.leftPanel {
+    height: 100%;
+    width: 20rem;
+    display: flex;
+}
+
+.navbar {
+    height: 100%;
+    width: 13rem;
+}
+
+.slider {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.payload {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }

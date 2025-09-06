@@ -66,8 +66,10 @@ export const OverviewPage: React.FC = observer(() => {
 
   return (
     <div className={styles.overviewContainer}>
-      <DonutChart data={expensesData} title="Расходы" />
-      <DonutChart data={incomeData} title="Доходы" />
+      <div className={styles.donuts}>
+        <DonutChart data={expensesData} title="Расходы" />
+        <DonutChart data={incomeData} title="Доходы" />        
+      </div>
       <div className={styles.palette}>
         <h3 className={styles.paletteTitle}>Расходы</h3>
         <CategoriesPalette categories={categories.filter((c) => {return c.type == 'Расход'})} />

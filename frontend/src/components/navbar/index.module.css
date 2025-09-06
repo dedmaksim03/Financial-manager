@@ -1,14 +1,13 @@
 .menu {
   height: 100%;
-  width: 10vw;
+  width: 100%;
   background-color: #fafafa;
-  font-size: large;
 }
 
 .menuItem {
-  padding-left: 2vw;
+  padding-left: 1rem;
 }
 
 p {
-  font-size: 1.7vh;
+  font-size: 1rem;
 }

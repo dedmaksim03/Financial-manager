@@ -18,8 +18,8 @@ export const DonutChart: React.FC<Props> = ({ data, title }) => {
   return (
 
   <div className={styles.donutChartWrapper}>
-    <h3 style={{ fontSize: '3vh', marginBottom: '1vh' }}>{title}</h3>
-    <ResponsiveContainer width="100%" height="100%">
+    <h3 className={styles.donutTitle}>{title}</h3>
+    <ResponsiveContainer>
       <PieChart>
         <Pie
           data={data.map(d => ({ name: d.name, color: d.color, value: d.sum }))}
@@ -51,7 +51,7 @@ export const DonutChart: React.FC<Props> = ({ data, title }) => {
           textAnchor="middle"
           dominantBaseline="middle"
           style={{
-            fontSize: 'calc(1vw + 1vh)',
+            fontSize: '2rem',
             fontWeight: 'bold',
             fill: centerTextColor,
           }}
