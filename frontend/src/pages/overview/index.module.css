@@ -19,7 +19,12 @@
   width: 30vw;
   min-width: 35rem;
   max-height: 42rem;
-  overflow-y: auto;
+}
+
+.categoriesPalette {
+  height: 15rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .paletteTitle {
