@@ -7,10 +7,32 @@
   overflow-y: auto;
 }
 
-.donuts {
+.leftPane {
   display: flex;
+  flex-direction: column;
   width: 30vw;
   min-width: 35rem;
+}
+
+.leftUpPane {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.leftDownPane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leftDownPaneHeader {
+  font-size: 2rem;
+}
+
+.leftDownPaneText {
+  font-size: 2rem;
+  margin: 0
 }
 
 .palette {

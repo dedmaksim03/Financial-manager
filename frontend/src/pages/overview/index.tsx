@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ActionsService from '../../services/ActionsService';
 import styles from './index.module.css';
 import { DonutChart } from '../../components/donuts';
-import { TransactionForm } from '../../components/transactionForm';
 import { CategoryResponse } from '../../models/response/CategoryResponse';
 import CategoriesService from '../../services/CategoriesService';
-import { ActionResponse } from '../../models/response/ActionResponse';
 import { observer } from "mobx-react-lite";
 import dateStore, { DateMode } from '../../store/DateStore'
 import { CategoriesPalette } from '../../components/categoriesPalette';
@@ -63,12 +60,27 @@ export const OverviewPage: React.FC = observer(() => {
 
   const expensesData = aggregateByCategory('Расход');
   const incomeData = aggregateByCategory('Доход');
+  const resultSum = incomeData.reduce((acc, val) => acc + val.sum, 0) - expensesData.reduce((acc, val) => acc + val.sum, 0)
 
   return (
     <div className={styles.overviewContainer}>
-      <div className={styles.donuts}>
-        <DonutChart data={expensesData} title="Расходы" />
-        <DonutChart data={incomeData} title="Доходы" />        
+      <div className={styles.leftPane}>
+        <div className={styles.leftUpPane}>
+          <DonutChart data={expensesData} title="Расходы" />
+          <DonutChart data={incomeData} title="Доходы" />  
+        </div>
+        <div className={styles.leftDownPane}>
+          <h3 className={styles.leftDownPaneHeader}>Итог</h3>
+          <h3 
+            className={styles.leftDownPaneText}
+            style={resultSum < 0 ? {color: '#ff0000'} : {color: '#008000'}}
+          >
+            {
+             `${resultSum < 0 ? `` : `+`}${resultSum.toLocaleString()} ₽ `
+            }
+          </h3 >
+        </div>        
+      
       </div>
       <div className={styles.palette}>
         <h3 className={styles.paletteTitle}>Расходы</h3>
