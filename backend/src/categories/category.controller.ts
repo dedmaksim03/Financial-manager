@@ -1,4 +1,4 @@
-import { Controller, Logger, UseGuards, Request, Get, Post, Res, Body, BadRequestException, Delete, Query } from "@nestjs/common";
+import { Controller, Logger, UseGuards, Request, Get, Post, Res, Body, BadRequestException, Delete, Query, Param } from "@nestjs/common";
 import { JwtAuthGuard } from "src/jwt/jwt.auth.guard";
 import { Response, Request as R } from 'express'
 import { CategoryResponseDto } from "./dtos/category.response.dto";
@@ -47,13 +47,13 @@ export class CategoriesController {
         return 
     }
 
-    @Delete('delete')
-    async deleteCategory (@Request() req, @Body() categoryRequestDto: CategoryRequestDto) {
-        if (!categoryRequestDto.id) {
+    @Delete(':id')
+    async deleteCategory (@Request() req, @Param('id') categoryId: number, @Query('forceDelete') forceDelete=false) {
+        if (!categoryId) {
             this.logger.log('Error while delete category')
             return new BadRequestException()
         }
-        let deleteResult = await this.categoryService.deleteCategory(categoryRequestDto.id)
+        let deleteResult = await this.categoryService.deleteCategory(categoryId, forceDelete)
         return 
     }
 

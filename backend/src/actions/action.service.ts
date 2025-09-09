@@ -1,10 +1,11 @@
 import { forwardRef, Inject, Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Action } from "./action.entity";
-import { Between, DeleteResult, In, Repository } from "typeorm";
+import { Between, DeleteResult, Equal, In, Repository } from "typeorm";
 import { User } from "src/users/user.entity";
 import { ActionDto } from "./dtos/action.dto";
 import { CategoryService } from "src/categories/category.service";
+import { Category } from "src/categories/category.entity";
 
 @Injectable()
 export class ActionService {
@@ -37,6 +38,26 @@ export class ActionService {
             relations: ['category']
         })
         return actions
+    }
+
+    async getActionsByCategory (categoryId: number, dateFrom?: Date, dateTo?: Date): Promise<Action[]> {
+
+        if (!dateFrom || !dateTo) {
+            return this.actionRepository.find({
+                where: {
+                    category: Equal(categoryId)
+                }
+            })
+        }
+
+        else {
+            return this.actionRepository.find({
+                where: {
+                    category: Equal(categoryId),
+                    date: Between(dateFrom.toString(), dateTo.toString())
+                }
+            })            
+        }
     }
 
     async createAction (actionDto: ActionDto): Promise<Action | null> {

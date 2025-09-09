@@ -1,8 +1,8 @@
-import { forwardRef, Inject, Injectable, Logger } from "@nestjs/common";
+import { ConflictException, forwardRef, Inject, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/users/user.entity";
 import { Category } from "./category.entity";
-import { DeleteResult, Repository } from "typeorm";
+import { DataSource, DeleteResult, Repository } from "typeorm";
 import { Action } from "src/actions/action.entity";
 import { ActionService } from "src/actions/action.service";
 import { CategoryResponseDto } from "./dtos/category.response.dto";
@@ -11,6 +11,7 @@ import { CategoryResponseDto } from "./dtos/category.response.dto";
 export class CategoryService {
     private readonly logger = new Logger(CategoryService.name)
     constructor(
+        private dataSource: DataSource,
         @InjectRepository(Category) private categoryRepository: Repository<Category>,
         @Inject(forwardRef(() => ActionService))
         private readonly actionService: ActionService
@@ -57,8 +58,23 @@ export class CategoryService {
         return this.categoryRepository.save(newCategory)
     } 
     
-    async deleteCategory (id: number): Promise<DeleteResult> {
-        return this.categoryRepository.delete(id)
+    async deleteCategory (id: number, forceDelete=false): Promise<DeleteResult> {
+        let actionsByCategory = await this.actionService.getActionsByCategory(id)
+        if (actionsByCategory.length != 0 && !forceDelete) {
+            throw new ConflictException(`Категория ${id} не может быть удалена из-за наличия зависимых объектов`);
+        }
+        
+        let category = await this.categoryRepository.findOne({where: {id: id}})
+
+        if (category){
+            return this.dataSource.transaction(async (manager) => {
+                await manager.getRepository(Action).delete({category: category})
+                return manager.getRepository(Category).delete(id)
+            })            
+        }
+        else {
+            throw new NotFoundException(`Категория ${id} не найдена`);
+        }
     }     
     
     async getById (id: number): Promise<Category|null> {
