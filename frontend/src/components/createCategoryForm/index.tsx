@@ -53,14 +53,13 @@ export const CreateCategoryForm: React.FC<Props> = ({ onCreate }) => {
 
   return (
     <div className={styles.container} ref={ref}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        title="Добавить категорию"
-        className={styles.button}
-        type="button"
-      >
-        ➕
-      </button>
+
+      {/* <div className={styles.button}>
+        <ButtonSubmit onClick={() => setIsOpen(!isOpen)}>  
+          Создать категорию
+        </ButtonSubmit>        
+      </div> */}
+
 
       {isOpen && (
         <div className={styles.popup}>
@@ -102,7 +101,7 @@ export const CreateCategoryForm: React.FC<Props> = ({ onCreate }) => {
               </select>
             </label>
           </div>
-          <div className={styles.button}>
+          <div className={styles.buttonCreate}>
             <ButtonSubmit variant="filled" onClick={handleCreate}>
               Создать
             </ButtonSubmit>

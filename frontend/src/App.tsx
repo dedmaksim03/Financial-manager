@@ -10,6 +10,7 @@ import { AuthPage } from './pages/auth';
 import { OverviewPage } from './pages/overview';
 import { OtherPage } from './pages/other';
 import OperationListPage from './pages/list';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
 
