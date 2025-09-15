@@ -1,11 +1,12 @@
-import { ConflictException, forwardRef, Inject, Injectable, Logger, NotFoundException } from "@nestjs/common";
+import { BadRequestException, ConflictException, forwardRef, Inject, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/users/user.entity";
 import { Category } from "./category.entity";
-import { DataSource, DeleteResult, Repository } from "typeorm";
+import { DataSource, DeleteResult, Repository, UpdateResult } from "typeorm";
 import { Action } from "src/actions/action.entity";
 import { ActionService } from "src/actions/action.service";
 import { CategoryResponseDto } from "./dtos/category.response.dto";
+import { CategoryRequestDto } from "./dtos/category.request.dto";
 
 @Injectable()
 export class CategoryService {
@@ -56,6 +57,21 @@ export class CategoryService {
         });
 
         return this.categoryRepository.save(newCategory)
+    } 
+
+    async editCategory (categoryRequestDto: CategoryRequestDto): Promise<Category> {
+
+        const category = await this.categoryRepository.findOne({where: {id: categoryRequestDto.id}})
+
+        if (!category)
+            throw new BadRequestException("Категория с таким id не найдена")
+
+        category.name = categoryRequestDto.name
+        category.color = categoryRequestDto.color
+        category.type = categoryRequestDto.type
+        
+
+        return this.categoryRepository.save(category)
     } 
     
     async deleteCategory (id: number, forceDelete=false): Promise<DeleteResult> {

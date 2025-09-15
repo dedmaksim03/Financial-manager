@@ -18,6 +18,7 @@ export const OverviewPage: React.FC = observer(() => {
   const [error, setError] = useState<string | null>(null);
 
   const [selectedCategoryId, setSelectedCategoryId] = useState<number|null>(null)
+
   const refPalleteUp = useRef<HTMLDivElement>(null);
   const refPalleteDown = useRef<HTMLDivElement>(null);
 
@@ -36,14 +37,25 @@ export const OverviewPage: React.FC = observer(() => {
     if (confirmed && selectedCategoryId) {
       CategoriesService.deleteCategory(selectedCategoryId)
         .then(() => getData())
+        .then(() => setSelectedCategoryId(null))
     }
   };
 
-  // const handleEdit = (data: CategoryFormData) => {
-  //   CategoriesService.createCategory(data)
-  //     .then(() => getData())
-  //     .then(() => setModalOpen(false))
-  // };    
+  const handleEdit = (data: CategoryFormData) => {
+    if (selectedCategoryId == null)
+      alert("Ошибка при отправке данных")
+    else{
+      CategoriesService.editCategory({
+        id: selectedCategoryId,
+        name: data.name,
+        color: data.color,
+        type: data.type
+      })
+      .then(() => getData())
+      .then(() => setModalOpen(false))
+      .then(() => setSelectedCategoryId(null))
+    }
+  };    
 
   const getData = () => {
     let dateFrom: string
@@ -84,8 +96,8 @@ export const OverviewPage: React.FC = observer(() => {
       if (refPalleteUp.current && refPalleteDown.current &&
           !refPalleteUp.current.contains(event.target as Node) &&
           !refPalleteDown.current.contains(event.target as Node) &&
-          !(event.target as HTMLElement).closest('button')
-
+          !(event.target as HTMLElement).closest('button') &&
+          !modalOpen
         ) {
         setSelectedCategoryId(null);
       }
@@ -98,7 +110,7 @@ export const OverviewPage: React.FC = observer(() => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [selectedCategoryId]);  
+  }, [selectedCategoryId, modalOpen]);  
 
   // Группируем данные по категориям и типу (доход/расход)
   const aggregateByCategory = (type: string) => {
@@ -156,14 +168,13 @@ export const OverviewPage: React.FC = observer(() => {
           {selectedCategoryId != null ?
           <>
             <div className={styles.downButton}>
-              <ButtonSubmit variant='dashed' onClick={() => {
-                setEditData({
-                  name: 'Продукты',
-                  color: '#ff0000',
-                  type: 'Расход',
-                });
+              <ButtonSubmit onClick={() => {
+                setEditData(
+                  categories.filter((cat) => {return cat.id == selectedCategoryId})
+                    .map((cat) => {return {name: cat.name, color: cat.color, type: cat.type} as CategoryFormData})[0]
+                );
                 setModalOpen(true);
-              }} style={{ marginLeft: 16 }}>
+              }}>
                 Редактировать
               </ButtonSubmit>   
             </div>    
@@ -184,10 +195,13 @@ export const OverviewPage: React.FC = observer(() => {
 
         <CategoryFormModal 
           open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          onSubmit={handleSave}
+          onClose={() => {
+            setModalOpen(false)
+            setSelectedCategoryId(null)
+          }}
+          onSubmit={selectedCategoryId == null ? handleSave : handleEdit}
           initialData={editData}
-        />  
+        />            
       
       </div>
     </div>

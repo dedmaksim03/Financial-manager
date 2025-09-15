@@ -47,6 +47,20 @@ export class CategoriesController {
         return 
     }
 
+    @Post('edit')
+    async editCategory (@Body() categoryRequestDto: CategoryRequestDto) {
+        if (!categoryRequestDto.id) 
+            return new BadRequestException("Нужен id объекта")
+        
+        let updateResult = await this.categoryService.editCategory(categoryRequestDto)
+
+        if (!updateResult) {
+            this.logger.log('Error while editing category')
+            return new BadRequestException()
+        }
+        return 
+    }
+
     @Delete(':id')
     async deleteCategory (@Request() req, @Param('id') categoryId: number, @Query('forceDelete') forceDelete=false) {
         if (!categoryId) {
