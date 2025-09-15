@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 
-export type TransactionType = 'income' | 'expense';
+export type TransactionType = 'Доход' | 'Расход';
 
 export interface CategoryFormData {
   name: string;
@@ -26,9 +26,8 @@ export interface CategoryFormProps {
   open: boolean;
   onClose: () => void;
   onSubmit: (data: CategoryFormData) => void;
-  initialData?: CategoryFormData; // если есть — редактируем, если нет — создаём
+  initialData?: CategoryFormData;
 }
-
 
 const CategoryFormModal: React.FC<CategoryFormProps> = ({
   open,
@@ -45,7 +44,7 @@ const CategoryFormModal: React.FC<CategoryFormProps> = ({
     defaultValues: initialData || {
       name: '',
       color: '#1976d2',
-      type: 'expense',
+      type: 'Расход',
     },
     mode: 'onChange',
   });
@@ -55,7 +54,7 @@ const CategoryFormModal: React.FC<CategoryFormProps> = ({
       reset(initialData || {
         name: '',
         color: '#1976d2',
-        type: 'expense',
+        type: 'Расход',
       });
     }
   }, [initialData, open, reset]);
@@ -67,7 +66,7 @@ const CategoryFormModal: React.FC<CategoryFormProps> = ({
       <DialogTitle>{isEditMode ? 'Редактировать категорию' : 'Создать категорию'}</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {/* Название */}
+
           <Controller
             name="name"
             control={control}
@@ -83,7 +82,6 @@ const CategoryFormModal: React.FC<CategoryFormProps> = ({
             )}
           />
 
-          {/* Цвет */}
           <Controller
             name="color"
             control={control}
@@ -97,7 +95,6 @@ const CategoryFormModal: React.FC<CategoryFormProps> = ({
             )}
           />
 
-          {/* Тип: Доход / Расход */}
           <Controller
             name="type"
             control={control}
@@ -109,8 +106,8 @@ const CategoryFormModal: React.FC<CategoryFormProps> = ({
                   labelId="type-label"
                   label="Тип"
                 >
-                  <MenuItem value="expense">Расход</MenuItem>
-                  <MenuItem value="income">Доход</MenuItem>
+                  <MenuItem value="Расход">Расход</MenuItem>
+                  <MenuItem value="Доход">Доход</MenuItem>
                 </Select>
               </FormControl>
             )}

@@ -36,8 +36,9 @@
 }
 
 .downButton {
-  width: 13rem;
-  height: 2rem;
+  width: 12rem;
+  height: 2.4rem;
+  padding: 1rem;
 }
 
 .palette {
@@ -61,4 +62,6 @@
 
 .paletteDownContainer {
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }

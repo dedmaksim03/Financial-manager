@@ -6,7 +6,6 @@ import CategoriesService from '../../services/CategoriesService';
 import { observer } from "mobx-react-lite";
 import dateStore, { DateMode } from '../../store/DateStore'
 import { CategoriesPalette } from '../../components/categoriesPalette';
-import { CreateCategoryForm } from '../../components/createCategoryForm';
 import { ButtonDelete, ButtonSubmit } from '../../components/buttons';
 import CategoryFormModal, { CategoryFormData } from '../../components/categoryForm';
 
@@ -19,16 +18,32 @@ export const OverviewPage: React.FC = observer(() => {
   const [error, setError] = useState<string | null>(null);
 
   const [selectedCategoryId, setSelectedCategoryId] = useState<number|null>(null)
-  const ref = useRef<HTMLDivElement>(null);
+  const refPalleteUp = useRef<HTMLDivElement>(null);
+  const refPalleteDown = useRef<HTMLDivElement>(null);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editData, setEditData] = useState<CategoryFormData | undefined>(undefined);  
 
 
   const handleSave = (data: CategoryFormData) => {
-    console.log('Saved data:', data);
-    setModalOpen(false);
+    CategoriesService.createCategory(data)
+      .then(() => getData())
+      .then(() => setModalOpen(false))
   };  
+
+  const handleDelete = () => {
+    const confirmed = window.confirm("Данное действие приведет к удалению всех зависимых объектов");
+    if (confirmed && selectedCategoryId) {
+      CategoriesService.deleteCategory(selectedCategoryId)
+        .then(() => getData())
+    }
+  };
+
+  // const handleEdit = (data: CategoryFormData) => {
+  //   CategoriesService.createCategory(data)
+  //     .then(() => getData())
+  //     .then(() => setModalOpen(false))
+  // };    
 
   const getData = () => {
     let dateFrom: string
@@ -66,9 +81,11 @@ export const OverviewPage: React.FC = observer(() => {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (//ref.current &&
-          // !ref.current.contains(event.target as Node) && 
+      if (refPalleteUp.current && refPalleteDown.current &&
+          !refPalleteUp.current.contains(event.target as Node) &&
+          !refPalleteDown.current.contains(event.target as Node) &&
           !(event.target as HTMLElement).closest('button')
+
         ) {
         setSelectedCategoryId(null);
       }
@@ -118,7 +135,7 @@ export const OverviewPage: React.FC = observer(() => {
       <div className={styles.palette}>
         <div className={styles.paletteUpContainer}>
           <h3 className={styles.paletteTitle}>Расходы</h3>
-          <div className={styles.categoriesPalette}>
+          <div className={styles.categoriesPalette} ref={refPalleteUp}>
             <CategoriesPalette 
               categories={categories.filter((c) => {return c.type == 'Расход'})} 
               selectedCategoryId={selectedCategoryId} 
@@ -126,47 +143,51 @@ export const OverviewPage: React.FC = observer(() => {
               />
           </div>
           <h3 className={styles.paletteTitle}>Доходы</h3>
-          <div className={styles.categoriesPalette}>
+          <div className={styles.categoriesPalette} ref={refPalleteDown}>
             <CategoriesPalette 
-            categories={categories.filter((c) => {return c.type == 'Доход'})}
-              selectedCategoryId={selectedCategoryId} 
-              setSelectedCategoryId={setSelectedCategoryId} 
-            />
+              categories={categories.filter((c) => {return c.type == 'Доход'})}
+                selectedCategoryId={selectedCategoryId} 
+                setSelectedCategoryId={setSelectedCategoryId} 
+              />
           </div>                  
         </div>
 
         <div className={styles.paletteDownContainer}>
-          <div style={{marginTop: '2vh'}}>
-            {selectedCategoryId != null ? 
+          {selectedCategoryId != null ?
+          <>
             <div className={styles.downButton}>
-            <ButtonSubmit variant="outlined" onClick={() => {
-              setEditData({
-                name: 'Продукты',
-                color: '#ff0000',
-                type: 'expense',
-              });
-              setModalOpen(true);
-            }} style={{ marginLeft: 16 }}>
-              Редактировать категорию
-            </ButtonSubmit>           
-              <ButtonDelete>
+              <ButtonSubmit variant='dashed' onClick={() => {
+                setEditData({
+                  name: 'Продукты',
+                  color: '#ff0000',
+                  type: 'Расход',
+                });
+                setModalOpen(true);
+              }} style={{ marginLeft: 16 }}>
+                Редактировать
+              </ButtonSubmit>   
+            </div>    
+            <div className={styles.downButton}>    
+              <ButtonDelete onClick={handleDelete}>
                 Удалить
               </ButtonDelete>
-            </div>
-            :
+            </div>          
+          </> 
+          :
+          <div className={styles.downButton}>
             <ButtonSubmit onClick={() => { setEditData(undefined); setModalOpen(true); }}>
-                Добавить
-              </ButtonSubmit>   
-            // <CreateCategoryForm onCreate={getData}/>
-            }
-          </div>
-            <CategoryFormModal 
-              open={modalOpen}
-              onClose={() => setModalOpen(false)}
-              onSubmit={handleSave}
-              initialData={editData}
-          />  
+                Добавить категорию
+            </ButtonSubmit>  
+          </div> 
+          }
         </div>
+
+        <CategoryFormModal 
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          onSubmit={handleSave}
+          initialData={editData}
+        />  
       
       </div>
     </div>
