@@ -50,7 +50,7 @@
 }
 
 .categoriesPalette {
-  max-height: 15rem;
+  height: 12rem;
   width: 100%;
   box-sizing: border-box;
 }

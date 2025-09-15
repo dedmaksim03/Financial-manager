@@ -1,5 +1,4 @@
 .container {
-  /* height: 100rem; */
   overflow-y: auto;
   border: 0.1rem solid #ddd;
   font-size: 1rem;
@@ -13,6 +12,7 @@
 .dateHeader {
   border-bottom: 0.1rem solid #ccc;
   padding-bottom: 0.2rem;
+  margin-left: 0.4rem;
 }
 
 .operationRow {

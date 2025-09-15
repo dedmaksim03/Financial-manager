@@ -80,7 +80,6 @@ export const TransactionForm: React.FC<Props> = ({
       setMessage('');
       setSum(0);
       setDate(new Date());
-      setType('Расход');
     })
        
   };
@@ -109,15 +108,6 @@ export const TransactionForm: React.FC<Props> = ({
       <div className={styles.fields}>
         <div className={styles.fieldGroup}>
           <input
-            type="text"
-            placeholder="Описание"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.fieldGroup}>
-          <input
             type="number"
             placeholder="Сумма"
             value={sum === 0 ? '' : sum}
@@ -126,7 +116,14 @@ export const TransactionForm: React.FC<Props> = ({
             step={0.01}
           />
         </div>
-
+        <div className={styles.fieldGroup}>
+          <input
+            type="text"
+            placeholder="Описание"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </div>
         <div className={styles.fieldGroup}>
           <div className={styles.datePicker}>
             <DatePicker
