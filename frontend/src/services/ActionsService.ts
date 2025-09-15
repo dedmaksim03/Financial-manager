@@ -23,6 +23,10 @@ export default class ActionsService {
     });
   }
 
+  static async editAction(actionResponse: ActionResponse): Promise<void> {
+    return $api.post('/actions/edit', actionResponse)
+  }
+
   static async deleteAction(action_id: number): Promise<void> {
     return $api.delete(`/actions/${action_id}`)
   }

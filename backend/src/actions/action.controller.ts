@@ -51,6 +51,20 @@ export class ActionsController {
         return 
     }
 
+    @Post('edit')
+    async editAction (@Body() actionDto: ActionDto) {
+        if (!actionDto.id) 
+            return new BadRequestException("Нужен id объекта")
+        
+        let updateResult = await this.actionService.editAction(actionDto)
+
+        if (!updateResult) {
+            this.logger.log('Error while editing action')
+            return new BadRequestException()
+        }
+        return 
+    }
+
     @Delete(':id')
     async deleteAction (@Request() req, @Param('id') actionId: number) {
         if (!actionId) {

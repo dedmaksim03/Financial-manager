@@ -120,7 +120,7 @@ export const TransactionForm: React.FC<Props> = ({
           <input
             type="number"
             placeholder="Сумма"
-            value={sum}
+            value={sum === 0 ? '' : sum}
             onChange={(e) => setSum(parseFloat(e.target.value))}
             min={0}
             step={0.01}
@@ -165,8 +165,13 @@ export const TransactionForm: React.FC<Props> = ({
         </div>
         
         <div className={styles.bottomButtonsContainer}>
-          <ButtonSubmit htmlType="submit" disabled={!selectedCategoryId && !editingOperation}>{editingOperation ? 'Сохранить изменения' : 'Создать'}</ButtonSubmit>
+          {!editingOperation && (
+            <ButtonSubmit htmlType="submit" disabled={!selectedCategoryId && !editingOperation}>Создать</ButtonSubmit>
+          )}
 
+          {editingOperation && (
+            <ButtonSubmit htmlType="submit" >Сохранить изменения</ButtonSubmit>
+          )}
           {editingOperation && (
             <ButtonDelete onClick={() => onDelete(editingOperation.id)} variant='filled'>Удалить</ButtonDelete>
           )}

@@ -89,10 +89,14 @@ const OperationListPage: React.FC = observer(() => {
     }) => 
     {
     if (editingOperation) {
-      console.log("Измененная операция:", {
-        ...editingOperation,
-        ...data,
-      });
+      ActionsService.editAction({
+        id: editingOperation.id,
+        sum: data.sum,
+        message: data.message,
+        category_id: data.category_id,
+        date: data.date
+      } as ActionResponse)
+        .then(() => getData())
       setEditingOperation(null);
     } else {
       ActionsService.createAction(

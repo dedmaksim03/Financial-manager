@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable, Logger } from "@nestjs/common";
+import { BadRequestException, forwardRef, Inject, Injectable, Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Action } from "./action.entity";
 import { Between, DeleteResult, Equal, In, Repository } from "typeorm";
@@ -80,6 +80,24 @@ export class ActionService {
         this.logger.log(`newAction: ${newAction.date}`)
 
         return this.actionRepository.save(newAction)
+    }    
+
+    async editAction (actionDto: ActionDto): Promise<Action> {
+        let category = await this.categoryService.getById(actionDto.category_id)
+        if (!category) {
+            throw new BadRequestException("Операция с такой категорией не найдена")
+        }
+        let action = await this.actionRepository.findOne({where: {id: actionDto.id}})
+        if (!action) {
+            throw new BadRequestException("Операция не найдена")
+        }
+
+        action.date = actionDto.date 
+        action.message = actionDto.message
+        action.sum = actionDto.sum 
+        action.category = category
+
+        return this.actionRepository.save(action)
     }    
     
     async deleteAction (id: number): Promise<DeleteResult> {
